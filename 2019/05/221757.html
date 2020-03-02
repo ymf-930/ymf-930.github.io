@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  
+    <meta name="description" content="我在这里，一个死宅的个人自留地，一个基于hexo的个人博客。随便写写，分享生活，文笔不好，欢迎吐槽！">
+  
+
+  
+    <meta name="keywords" content="我在这里 个人博客 自留地 死宅 hexo flex-block">
+  
+
+  
+    <meta name="author" content="后来@">
+  
+
+  
+
+  
+
+  <title>使用Azure DevOps创建CI/CD实现自动构建发布 | 后来@&#39;s Blog</title>
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    <link href="https://cdn.bootcss.com/highlight.js/9.15.6/styles/monokai.min.css" rel="stylesheet">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+  <div class="root-container">
+    <!-- navbar -->
+<nav class="navbar">
+  <div class="navbar-content">
+    <!-- logo -->
+    <div class="navbar-logo">
+      <a href="/">
+        
+          后来@&#39;s Blog
+        
+      </a>
+    </div>
+    <!-- link -->
+    <div class="navbar-link">
+      <div class="navbar-btn">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <ul class="navbar-list">
+        
+          <li class="navbar-list-item"><a href="/">首页</a></li>
+        
+          <li class="navbar-list-item"><a href="/tags">标签</a></li>
+        
+          <li class="navbar-list-item"><a href="/links">友链</a></li>
+        
+          <li class="navbar-list-item"><a href="/messages">留言</a></li>
+        
+          <li class="navbar-list-item"><a href="/about">关于</a></li>
+        
+          <li class="navbar-list-item"><a href="/anime">アニメ</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    
+<!-- header container -->
+<header class="header-container post">
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+    <div class="header-content">
+      <div class="post-image" style="background-image: url(https://qiniu.miiiku.xyz/attach/2019/05/WX20190522-184111@2x0.png)"></div>
+      <div class="post-text">
+        <div class="type-wrap">
+          <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+        </div>
+        <h1 class="title-wrap">使用Azure DevOps创建CI/CD实现自动构建发布</h1>
+        <h2 class="title-sub-wrap">
+          <strong>后来@</strong>
+          <span>发布于</span>
+          
+  <a href="javascript:;" class="article-date">
+    <time datetime="2019-05-22T09:57:03.000Z" itemprop="datePublished">2019-05-22</time>
+  </a>
+
+        </h2>
+      </div>
+    </div>
+  
+
+  
+  
+
+  </header>
+
+    <!-- 文章 -->
+
+<!-- 文章内容 -->
+
+<div class="body-container">
+  <article class="content-container article-container">
+    <div class="article-content">
+      
+      
+
+      <div class="article-entry">
+        <p>目前博客项目代码是放在GitHub上的，每次发布了新了文章会往GitHub上推送一次，还会往托管博客的服务器推送一次，很繁琐</p>
+<p>偶然看到可以使用微软的Azure DevOps来创建CI/CD自动构建部署到服务器，这样以来每次在本地发布新的文章，直接push到GitHub就可以摸鱼，等待几分钟后线上博客已经自动更新，美滋滋。</p>
+<p>第一次使用Azure Devops，磕磕碰碰的测试了很久，文档目前还没有中文的，全靠谷歌翻译，有些地方自己也不是太明白，但好歹现在感觉弄好了😂</p>
+<p>关于CI/CD的文章网上一大堆，专业术语也很多，看的费神就不做多说了😂😂😂</p>
+<p><img src="https://qiniu.miiiku.xyz/attach/2019/05/WX20190522-184111@2x0.png" alt="https://qiniu.miiiku.xyz/attach/2019/05/WX20190522-184111@2x0.png"></p>
+<p>关于Azure DevOps相关文档可以查看<a href="https://docs.microsoft.com/en-us/azure/devops/pipelines/?view=azure-devops" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/azure/devops/pipelines/?view=azure-devops</a></p>
+<p><strong>创建CI</strong></p>
+<p><img src="https://qiniu.miiiku.xyz/attach/2019/05/WX20190522-182619@2x1.png" alt="https://qiniu.miiiku.xyz/attach/2019/05/WX20190522-182619@2x1.png"></p>
+<p>在<em>Pipelines</em>中新建一个<em>Builds</em>管道任务</p>
+<p>我的配置如下</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-comment"># Starter pipeline</span><br><span class="hljs-comment"># Start with a minimal pipeline that you can customize to build and deploy your code.</span><br><span class="hljs-comment"># Add steps that build, run tests, deploy, and more:</span><br><span class="hljs-comment"># https://aka.ms/yaml</span><br><br><span class="hljs-attr">trigger:</span><br><span class="hljs-bullet">-</span> <span class="hljs-string">master</span><br><br><span class="hljs-attr">pool:</span><br><span class="hljs-attr">  vmImage:</span> <span class="hljs-string">'Ubuntu-latest'</span><br><br><span class="hljs-attr">steps:</span><br><br><span class="hljs-comment"># 使用nodejs</span><br><span class="hljs-attr">- task:</span> <span class="hljs-string">UseNode@1</span><br><span class="hljs-attr">  inputs:</span><br><span class="hljs-attr">    checkLatest:</span> <span class="hljs-literal">true</span><br><span class="hljs-attr">  displayName:</span> <span class="hljs-string">'Install Node.js'</span><br><br><span class="hljs-comment"># 安装npm包</span><br><span class="hljs-attr">- task:</span> <span class="hljs-string">Npm@1</span><br><span class="hljs-attr">  inputs:</span><br><span class="hljs-attr">    command:</span> <span class="hljs-string">'install'</span><br><span class="hljs-attr">  displayName:</span> <span class="hljs-string">'npm install'</span><br><br><span class="hljs-comment"># 全局安装hexo</span><br><span class="hljs-attr">- task:</span> <span class="hljs-string">Npm@1</span><br><span class="hljs-attr">  inputs:</span><br><span class="hljs-attr">    command:</span> <span class="hljs-string">'custom'</span><br><span class="hljs-attr">    customCommand:</span> <span class="hljs-string">'install hexo -g'</span><br><span class="hljs-attr">  displayName:</span> <span class="hljs-string">'npm install hexo -g'</span><br><br><span class="hljs-comment"># 生成博客静态文件</span><br><span class="hljs-attr">- task:</span> <span class="hljs-string">Bash@3</span><br><span class="hljs-attr">  inputs:</span><br><span class="hljs-attr">    targetType:</span> <span class="hljs-string">'inline'</span><br><span class="hljs-attr">    script:</span> <span class="hljs-string">'hexo g'</span><br><span class="hljs-attr">  displayName:</span> <span class="hljs-string">'hexo g'</span><br><br><span class="hljs-comment"># - task: ArchiveFiles@2</span><br><span class="hljs-comment">#   inputs:</span><br><span class="hljs-comment">#     rootFolderOrFile: '$(Build.BinariesDirectory)'</span><br><span class="hljs-comment">#     includeRootFolder: true</span><br><span class="hljs-comment">#     archiveType: 'zip'</span><br><span class="hljs-comment">#     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'</span><br><span class="hljs-comment">#     replaceExistingArchive: true</span><br><span class="hljs-comment">#     verbose: true</span><br><span class="hljs-comment">#   displayName: 'zip file'</span><br><br><span class="hljs-comment"># 对生产的静态文件打包</span><br><span class="hljs-attr">- task:</span> <span class="hljs-string">ArchiveFiles@2</span><br><span class="hljs-attr">  inputs:</span><br><span class="hljs-attr">    rootFolderOrFile:</span> <span class="hljs-string">'$(System.DefaultWorkingDirectory)/public'</span><br><span class="hljs-attr">    includeRootFolder:</span> <span class="hljs-literal">false</span><br><span class="hljs-attr">    archiveType:</span> <span class="hljs-string">'zip'</span><br><span class="hljs-attr">    archiveFile:</span> <span class="hljs-string">'$(Build.ArtifactStagingDirectory)/file.zip'</span><br><span class="hljs-attr">    replaceExistingArchive:</span> <span class="hljs-literal">true</span><br><span class="hljs-attr">  displayName:</span> <span class="hljs-string">'zip file'</span><br><br><span class="hljs-comment"># 吧打包的文件上传到临时代理容器中</span><br><span class="hljs-attr">- task:</span> <span class="hljs-string">PublishBuildArtifacts@1</span><br><span class="hljs-attr">  inputs:</span><br><span class="hljs-attr">    PathtoPublish:</span> <span class="hljs-string">'$(Build.ArtifactStagingDirectory)/file.zip'</span><br><span class="hljs-attr">    ArtifactName:</span> <span class="hljs-string">'blog'</span><br><span class="hljs-attr">    publishLocation:</span> <span class="hljs-string">'Container'</span><br><br><span class="hljs-comment"># 一个成功到提示，没什么用</span><br><span class="hljs-attr">- script:</span> <span class="hljs-string">echo</span> <span class="hljs-string">success</span><br><span class="hljs-attr">  displayName:</span> <span class="hljs-string">'end...'</span><br></code></pre></td></tr></table></figure>
+<p><strong>创建CD</strong></p>
+<p><img src="https://qiniu.miiiku.xyz/attach/2019/05/WX20190522-184346@2x2.png" alt="https://qiniu.miiiku.xyz/attach/2019/05/WX20190522-184346@2x2.png"></p>
+<p>这里需要设置触发方式，每次新构建成功后自动触发CD部署代码</p>
+<p><img src="https://qiniu.miiiku.xyz/attach/2019/05/WX20190522-184537@2x3.png" alt="https://qiniu.miiiku.xyz/attach/2019/05/WX20190522-184537@2x3.png"></p>
+<p>在CD中，我创建了两个任务，第一个是吧CI中打包的文件上传到自己的服务器，第二个则是吧已经上传的压缩包解压出来并删除压缩包，这样就实现了线上博客的更新。</p>
+<p><img src="https://qiniu.miiiku.xyz/attach/2019/05/WX20190522-185448@2x4.png" alt="https://qiniu.miiiku.xyz/attach/2019/05/WX20190522-185448@2x4.png"></p>
+<p><img src="https://qiniu.miiiku.xyz/attach/2019/05/WX20190522-185620@2x5.png" alt="https://qiniu.miiiku.xyz/attach/2019/05/WX20190522-185620@2x5.png"></p>
+<p>整个大概流程就是这样了，写的并不清楚，一些地方没有说到，主要是嫌弃麻烦😂，嘛，反正只是一次记录，不要在意太多细节。。。。</p>
+
+      </div>
+
+      <div class="article-footer">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DevOps/" rel="tag">#DevOps</a></li></ul>
+      </div>
+
+      <div class="article-navs">
+        
+<nav class="card-container card-article-nav">
+  <div class="card-wrap">
+    
+      <div id="article-nav-newer" class="card-item img">
+        <article>
+          
+            <div class="card-cover" style="background-image: url(https://oss.miiiku.xyz/2019-09-06/2fbae73349028a33ea67619d1073a854.jpeg)"></div>
+          
+          <a class="card-link article-nav-link" href="/2019/09/061613.html"></a>
+          <strong class="article-nav-caption">Newer</strong>
+          <p class="article-nav-title">
+            
+              修改博客瀑布流，添加了水平布局
+            
+          </p>
+        </article>
+      </div>
+    
+    
+      <div id="article-nav-older" class="card-item img">
+        <article>
+          
+            <div class="card-cover" style="background-image: url(https://qiniu.miiiku.xyz/attach/2019/04/15547080973461285_200478990.jpg)"></div>
+          
+          <a class="card-link article-nav-link" href="/2019/04/151921.html"></a>
+          <strong class="article-nav-caption">Older</strong>
+          <p class="article-nav-title">
+            
+              好烦鸭。。。
+            
+          </p>
+        </article>
+      </div>
+    
+  </div>
+</nav>
+
+      </div>
+      
+      
+
+  
+  <div class="valine-container">
+    <div id="valine_thread" class="valine-thread"></div>
+  </div>
+
+  
+  
+  <div class="disqus-container">
+    <p id="disqus_error" class="disqus-error" style="display: none;">如果你看不到评论，那么就真的看不到评论 w(゜Д゜)w</p>
+    <div id="disqus_thread" class="disqus-thread"></div>
+  </div>
+  
+
+
+    </div>
+  </article>
+</div>
+
+    <!-- footer container -->
+<footer id="footer" class="footer">
+  <div class="footer-container">
+    <p>&copy; 2020 <a href="/" target="_blank">后来@</a></p>
+
+    <style>
+      .colour-text {
+        display: inline-block;
+        margin: 20px auto;
+        text-align: left;
+        background-image: linear-gradient(to right, deeppink, pink, hotpink, lightpink, deeppink);
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+      }
+    </style>
+    
+    <p class="colour-text">
+      “关于泉前辈，我可以和他约会吗？” “不可以”
+    </p>
+
+    
+
+    
+      <p><a href="http://www.miitbeian.gov.cn" target="_blank">蜀ICP备15014309号</a></p>
+    
+
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> Theme - <a href="https://github.com/miiiku/flex-block" target="_blank">flex-block</a></p>
+  </div>
+</footer>
+  </div>
+
+  
+  
+
+  <!-- disqus 评论 start -->
+  <script type="text/javascript">
+    /*
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    
+    /*
+      var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+    */
+
+    (function() {
+      var d = document, s = d.createElement('script'), c = d.querySelector(".disqus-container");
+      if (!c) return;
+      s.src = 'https://sukoshi95.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      s.onerror = () => {
+        let t = document.querySelector("#disqus_error");
+        t.style.display = "block";
+      }
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <!-- disqus 评论 end -->
+  
+
+  <!-- aplayer 音频 start -->
+  
+<link rel="stylesheet" href="/lib/APlayer.min.css">
+
+  
+<script src="/lib/APlayer.min.js"></script>
+
+  <script type="text/javascript">
+    const aplayer = document.querySelectorAll(".aplayer");
+    aplayer && initaplayer(aplayer);
+    function initaplayer(els) {
+      let elsArr = Array.from(els);
+      elsArr.forEach(el => {
+        new APlayer({
+          container: el,
+          audio: { ...el.dataset },
+          theme: "#b7daff",
+          lrcType: 3,
+          autoplay: false,
+          loop: false,
+          mutex: true,
+        });
+      });
+    }
+  </script>
+  <!-- aplayer 音频 end -->
+  
+
+<!-- dplayer 视频 start -->
+
+<link rel="stylesheet" href="/lib/DPlayer.min.css">
+
+
+<script src="/lib/DPlayer.min.js"></script>
+
+<script type="text/javascript">
+  const dplayer = document.querySelectorAll(".dplayer");
+  dplayer && initDPlayer(dplayer);
+  function initDPlayer(els) {
+    let elsArr = Array.from(els);
+    elsArr.forEach(el => {
+      let url = el.dataset.url;
+      let cover = el.dataset.cover;
+      new DPlayer({
+        container: el,
+        video: { url: url, pic: cover },
+        theme: "#b7daff",
+        autoplay: false,
+        loop: false,
+        mutex: true,
+      });
+    });
+  }
+</script>
+<!-- dplayer 视频 end -->
+
+
+<!-- waterfall 瀑布流 start -->
+
+<script src="/lib/waterfall.min.js"></script>
+
+<script type="text/javascript">
+
+const waterfalls = document.querySelectorAll(".waterfall-container");
+
+if (waterfalls && waterfalls.length > 0) {
+  waterfalls.forEach((waterfall, index) => {
+    let cls = "waterfall-container-" + index;
+    waterfall.classList.add(cls);
+    initWaterfall(cls, waterfall);
+  });
+}
+
+function initWaterfall(selector, el) {
+  const options = {};
+  if (Object.keys(el.dataset).length > 0) {
+    for (let k in el.dataset) {
+      options[k] = el.dataset[k];
+    }
+  }
+  waterfall(`.${selector}`, options);
+}
+</script>
+<!-- waterfall 瀑布流 end -->
+
+
+  <!-- zoom start -->
+  
+<script src="/lib/zoom.min.js"></script>
+
+  <script type="text/javascript">
+    document.querySelector(".article-content") && zoom(".article-content");
+  </script>
+  <!-- zoom end -->
+  
+
+
+
+  
+
+
+  
+
+
+  <!-- Baidu Analytics START -->
+  <script>
+    var _hmt = _hmt || [];
+    (function () {
+      if (window.location.hostname === "localhost" || window.location.hostname.startsWith("192.168")) {
+        return console.log("本地调试");
+      }
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?410f4beade12e8df64ea4c5622313220";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  <!-- Baidu Analytics End -->
+
+  
+
+
+  <!-- Tencent Analytics START -->
+  <script>
+    (function() {
+      if (window.location.hostname === "localhost" || window.location.hostname.startsWith("192.168")) {
+        return console.log("本地调试");
+      }
+      let s = document.querySelector("script");
+      let hm = document.createElement("script");
+      hm.charset = "UTF-8";
+      hm.src = "https://tajs.qq.com/stats?sId=64852535";
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  <!-- Tencent Analytics End -->
+
+
+
+<script src="/js/script.js"></script>
+
+  
+  <!-- 尾部用户自定义相关内容 -->
+
+<!-- 插入Sentry -->
+<script>
+  (function () {
+    if (window.location.hostname === "localhost" || window.location.hostname.startsWith("192.168")) {
+      return console.log("本地调试");
+    }
+    let hm = document.createElement("script");
+    let s = document.querySelector("script");
+    hm.src = "https://browser.sentry-cdn.com/5.10.2/bundle.min.js";
+    hm.integrity = "sha384-ssBfXiBvlVC7bdA/VX03S88B5MwXQWdnpJRbUYFPgswlOBwETwTp6F3SMUNpo9M9";
+    hm.crossOrigin = "anonymous";
+    hm.onload = function () {
+      Sentry.init({ dsn: "https://d4e3bac81c30416fb7b917004fdc2a6f@sentry.io/1864685" });
+    }
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+<!-- 插入Sentry End -->
+
+<!-- 插入百度ESO相关 START -->
+<script>
+  var _hmt = _hmt || [];
+  (function () {
+    if (window.location.hostname === "localhost" || window.location.hostname.startsWith("192.168")) {
+      return console.log("本地调试");
+    }
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?410f4beade12e8df64ea4c5622313220";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  });
+</script>
+<!-- 插入百度ESO相关 END -->
+
+<!-- 插入百度链接自动提交 START -->
+<script>
+  (function () {
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+<!-- 插入百度链接自动提交 END --> 
+</body>
+</html>

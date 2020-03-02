@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  
+    <meta name="description" content="我在这里，一个死宅的个人自留地，一个基于hexo的个人博客。随便写写，分享生活，文笔不好，欢迎吐槽！">
+  
+
+  
+    <meta name="keywords" content="我在这里 个人博客 自留地 死宅 hexo flex-block">
+  
+
+  
+    <meta name="author" content="后来@">
+  
+
+  
+
+  
+
+  <title>MySQL基础 | 后来@&#39;s Blog</title>
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    <link href="https://cdn.bootcss.com/highlight.js/9.15.6/styles/monokai.min.css" rel="stylesheet">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+  <div class="root-container">
+    <!-- navbar -->
+<nav class="navbar">
+  <div class="navbar-content">
+    <!-- logo -->
+    <div class="navbar-logo">
+      <a href="/">
+        
+          后来@&#39;s Blog
+        
+      </a>
+    </div>
+    <!-- link -->
+    <div class="navbar-link">
+      <div class="navbar-btn">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <ul class="navbar-list">
+        
+          <li class="navbar-list-item"><a href="/">首页</a></li>
+        
+          <li class="navbar-list-item"><a href="/tags">标签</a></li>
+        
+          <li class="navbar-list-item"><a href="/links">友链</a></li>
+        
+          <li class="navbar-list-item"><a href="/messages">留言</a></li>
+        
+          <li class="navbar-list-item"><a href="/about">关于</a></li>
+        
+          <li class="navbar-list-item"><a href="/anime">アニメ</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    
+<!-- header container -->
+<header class="header-container post">
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+    <div class="header-content">
+      <div class="post-image" style="background-image: url(https://qiniu.miiiku.xyz/src/images/banner.jpg)"></div>
+      <div class="post-text">
+        <div class="type-wrap">
+          <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+        </div>
+        <h1 class="title-wrap">MySQL基础</h1>
+        <h2 class="title-sub-wrap">
+          <strong>后来@</strong>
+          <span>发布于</span>
+          
+  <a href="javascript:;" class="article-date">
+    <time datetime="2020-03-02T09:56:24.000Z" itemprop="datePublished">2020-03-02</time>
+  </a>
+
+        </h2>
+      </div>
+    </div>
+  
+
+  
+  
+
+  </header>
+
+    <!-- 文章 -->
+
+<!-- 文章内容 -->
+
+<div class="body-container">
+  <article class="content-container article-container">
+    <div class="article-content">
+      
+      
+
+      <div class="article-entry">
+        <h1 id="本单元目标"><a href="#本单元目标" class="headerlink" title="本单元目标"></a>本单元目标</h1><pre><code>一、为什么要学习数据库
+    二、数据库的相关概念      
+        DBMS、DB、SQL
+    三、数据库存储数据的特点
+    四、初始MySQL
+        MySQL产品的介绍        
+        MySQL产品的安装          ★        
+        MySQL服务的启动和停止     ★
+        MySQL服务的登录和退出     ★      
+        MySQL的常见命令和语法规范      
+    五、DQL语言的学习   ★              
+        基础查询        ★             
+        条件查询         ★            
+        排序查询         ★                
+        常见函数        ★               
+        分组函数        ★              
+        分组查询           ★            
+        连接查询         ★            
+        子查询       √                  
+        分页查询       ★              
+        union联合查询    √            
+六、DML语言的学习    ★             
+    插入语句                        
+    修改语句                        
+    删除语句                        
+七、DDL语言的学习  
+    库和表的管理     √                
+    常见数据类型介绍  √          
+    常见约束        √            
+八、TCL语言的学习
+    事务和事务处理                 
+九、视图的讲解           √
+十、变量                      
+十一、存储过程和函数   
+十二、流程控制结构       
+</code></pre><h2 id="数据库的好处"><a href="#数据库的好处" class="headerlink" title="数据库的好处"></a>数据库的好处</h2><ol>
+<li>​    持久化数据到本地</li>
+<li>​    可以实现结构化查询，方便管理<br>​    </li>
+</ol>
+<h2 id="数据库相关概念"><a href="#数据库相关概念" class="headerlink" title="数据库相关概念"></a>数据库相关概念</h2><ol>
+<li>​    DB：数据库，保存一组有组织的数据的容器</li>
+<li>​    DBMS：数据库管理系统，又称为数据库软件（产品），用于管理DB中的数据</li>
+<li>​    SQL:结构化查询语言，用于和DBMS通信的语言</li>
+</ol>
+<h2 id="数据库存储数据的特点"><a href="#数据库存储数据的特点" class="headerlink" title="数据库存储数据的特点"></a>数据库存储数据的特点</h2><ol>
+<li>​    将数据放到表中，表再放到库中</li>
+<li>​    一个数据库中可以有多个表，每个表都有一个的名字，用来标识自己。表名具有唯一性。</li>
+<li>​    表具有一些特性，这些特性定义了数据在表中如何存储，类似java中 “类”的设计。</li>
+<li>​    表由列组成，我们也称为字段。所有表都是由一个或多个列组成的，每一列类似java 中的”属性”</li>
+<li>​    表中的数据是按行存储的，每一行类似于java中的“对象”。</li>
+</ol>
+<h2 id="MySQL产品的介绍和安装"><a href="#MySQL产品的介绍和安装" class="headerlink" title="MySQL产品的介绍和安装"></a>MySQL产品的介绍和安装</h2><h3 id="MySQL服务的启动和停止"><a href="#MySQL服务的启动和停止" class="headerlink" title="MySQL服务的启动和停止"></a>MySQL服务的启动和停止</h3><p>​    方式一：计算机——右击管理——服务<br>​    方式二：通过管理员身份运行<br>​    net start 服务名（启动服务）<br>​    net stop 服务名（停止服务）</p>
+<h3 id="MySQL服务的登录和退出"><a href="#MySQL服务的登录和退出" class="headerlink" title="MySQL服务的登录和退出"></a>MySQL服务的登录和退出</h3><p>​    方式一：通过mysql自带的客户端<br>​    只限于root用户</p>
+<pre><code>方式二：通过windows自带的客户端
+登录：
+mysql 【-h主机名 -P端口号 】-u用户名 -p密码
+
+退出：
+exit或ctrl+C
+</code></pre><p>​<br>​<br>​    </p>
+<h3 id="MySQL的常见命令"><a href="#MySQL的常见命令" class="headerlink" title="MySQL的常见命令"></a>MySQL的常见命令</h3><pre><code>1.查看当前所有的数据库
+show databases;
+2.打开指定的库
+use 库名
+3.查看当前库的所有表
+show tables;
+4.查看其它库的所有表
+show tables from 库名;
+5.创建表
+create table 表名(
+
+    列名 列类型,
+    列名 列类型，
+    。。。
+);
+6.查看表结构
+desc 表名;
+
+
+7.查看服务器的版本
+方式一：登录到mysql服务端
+select version();
+方式二：没有登录到mysql服务端
+mysql --version
+或
+mysql --V
+</code></pre><h3 id="MySQL的语法规范"><a href="#MySQL的语法规范" class="headerlink" title="MySQL的语法规范"></a>MySQL的语法规范</h3><p>​    1.不区分大小写,但建议关键字大写，表名、列名小写<br>​    2.每条命令最好用分号结尾<br>​    3.每条命令根据需要，可以进行缩进 或换行<br>​    4.注释<br>​        单行注释：#注释文字<br>​        单行注释：– 注释文字<br>​        多行注释：/<em> 注释文字  </em>/<br>​<br>​<br>​    </p>
+<h3 id="SQL的语言分类"><a href="#SQL的语言分类" class="headerlink" title="SQL的语言分类"></a>SQL的语言分类</h3><p>​    DQL（Data Query Language）：数据查询语言<br>​        select<br>​    DML(Data Manipulate Language):数据操作语言<br>​        insert 、update、delete<br>​    DDL（Data Define Languge）：数据定义语言<br>​        create、drop、alter<br>​    TCL（Transaction Control Language）：事务控制语言<br>​        commit、rollback<br>​    </p>
+<h3 id="SQL的常见命令"><a href="#SQL的常见命令" class="headerlink" title="SQL的常见命令"></a>SQL的常见命令</h3><pre><code>show databases； 查看所有的数据库
+use 库名； 打开指定 的库
+show tables ; 显示库中的所有表
+show tables from 库名;显示指定库中的所有表
+create table 表名(
+    字段名 字段类型,    
+    字段名 字段类型
+); 创建表
+
+desc 表名; 查看指定表的结构
+select * from 表名;显示表中的所有数据
+</code></pre><h2 id="DQL语言的学习"><a href="#DQL语言的学习" class="headerlink" title="DQL语言的学习"></a>DQL语言的学习</h2><h3 id="进阶1：基础查询"><a href="#进阶1：基础查询" class="headerlink" title="进阶1：基础查询"></a>进阶1：基础查询</h3><p>​    语法：<br>​    SELECT 要查询的东西<br>​    【FROM 表名】;</p>
+<pre><code>类似于Java中 :System.out.println(要打印的东西);
+特点：
+①通过select查询完的结果 ，是一个虚拟的表格，不是真实存在
+② 要查询的东西 可以是常量值、可以是表达式、可以是字段、可以是函数
+</code></pre><h3 id="进阶2：条件查询"><a href="#进阶2：条件查询" class="headerlink" title="进阶2：条件查询"></a>进阶2：条件查询</h3><p>​    条件查询：根据条件过滤原始表的数据，查询到想要的数据<br>​    语法：<br>​    select<br>​        要查询的字段|表达式|常量值|函数<br>​    from<br>​        表<br>​    where<br>​        条件 ;</p>
+<pre><code>分类：
+一、条件表达式
+    示例：salary&gt;10000
+    条件运算符：
+    &gt; &lt; &gt;= &lt;= = != &lt;&gt;
+
+二、逻辑表达式
+示例：salary&gt;10000 &amp;&amp; salary&lt;20000
+
+逻辑运算符：
+
+    and（&amp;&amp;）:两个条件如果同时成立，结果为true，否则为false
+    or(||)：两个条件只要有一个成立，结果为true，否则为false
+    not(!)：如果条件成立，则not后为false，否则为true
+
+三、模糊查询
+示例：last_name like &apos;a%&apos;
+</code></pre><h3 id="进阶3：排序查询"><a href="#进阶3：排序查询" class="headerlink" title="进阶3：排序查询"></a>进阶3：排序查询</h3><p>​    </p>
+<pre><code>语法：
+select
+    要查询的东西
+from
+    表
+where 
+    条件
+
+order by 排序的字段|表达式|函数|别名 【asc|desc】
+</code></pre><p>​    </p>
+<h3 id="进阶4：常见函数"><a href="#进阶4：常见函数" class="headerlink" title="进阶4：常见函数"></a>进阶4：常见函数</h3><p>一、单行函数</p>
+<pre><code>1、字符函数
+    concat拼接
+    substr截取子串
+    upper转换成大写
+    lower转换成小写
+    trim去前后指定的空格和字符
+    ltrim去左边空格
+    rtrim去右边空格
+    replace替换
+    lpad左填充
+    rpad右填充
+    instr返回子串第一次出现的索引
+    length 获取字节个数
+2、数学函数
+    round 四舍五入
+    rand 随机数
+    floor向下取整
+    ceil向上取整
+    mod取余
+    truncate截断
+3、日期函数
+    now当前系统日期+时间
+    curdate当前系统日期
+    curtime当前系统时间
+    str_to_date 将字符转换成日期
+    date_format将日期转换成字符
+4、流程控制函数
+    if 处理双分支
+    case语句 处理多分支
+        情况1：处理等值判断
+        情况2：处理条件判断
+
+5、其他函数
+    version版本
+    database当前库
+    user当前连接用户
+</code></pre><p>​    </p>
+<p>二、分组函数</p>
+<pre><code>sum 求和
+max 最大值
+min 最小值
+avg 平均值
+count 计数
+
+特点：
+1、以上五个分组函数都忽略null值，除了count(*)
+2、sum和avg一般用于处理数值型
+    max、min、count可以处理任何数据类型
+3、都可以搭配distinct使用，用于统计去重后的结果
+4、count的参数可以支持：
+    字段、*、常量值，一般放1
+
+   建议使用 count(*)
+</code></pre><h2 id="进阶5：分组查询"><a href="#进阶5：分组查询" class="headerlink" title="进阶5：分组查询"></a>进阶5：分组查询</h2><p>​    语法：<br>​    select 查询的字段，分组函数<br>​    from 表<br>​    group by 分组的字段<br>​<br>​    </p>
+<pre><code>特点：
+1、可以按单个字段分组
+2、和分组函数一同查询的字段最好是分组后的字段
+3、分组筛选
+        针对的表    位置            关键字
+分组前筛选：    原始表        group by的前面        where
+分组后筛选：    分组后的结果集    group by的后面        having
+
+4、可以按多个字段分组，字段之间用逗号隔开
+5、可以支持排序
+6、having后可以支持别名
+</code></pre><h2 id="进阶6：多表连接查询"><a href="#进阶6：多表连接查询" class="headerlink" title="进阶6：多表连接查询"></a>进阶6：多表连接查询</h2><pre><code>笛卡尔乘积：如果连接条件省略或无效则会出现
+解决办法：添加上连接条件
+</code></pre><p>一、传统模式下的连接 ：等值连接——非等值连接</p>
+<pre><code>1.等值连接的结果 = 多个表的交集
+2.n表连接，至少需要n-1个连接条件
+3.多个表不分主次，没有顺序要求
+4.一般为表起别名，提高阅读性和性能
+</code></pre><p>二、sql99语法：通过join关键字实现连接</p>
+<pre><code>含义：1999年推出的sql语法
+支持：
+等值连接、非等值连接 （内连接）
+外连接
+交叉连接
+
+语法：
+
+select 字段，...
+from 表1
+【inner|left outer|right outer|cross】join 表2 on  连接条件
+【inner|left outer|right outer|cross】join 表3 on  连接条件
+【where 筛选条件】
+【group by 分组字段】
+【having 分组后的筛选条件】
+【order by 排序的字段或表达式】
+
+好处：语句上，连接条件和筛选条件实现了分离，简洁明了！
+</code></pre><p>​<br>三、自连接</p>
+<p>案例：查询员工名和直接上级的名称</p>
+<p>sql99</p>
+<pre><code>SELECT e.last_name,m.last_name
+FROM employees e
+JOIN employees m ON e.`manager_id`=m.`employee_id`;
+</code></pre><p>sql92</p>
+<pre><code>SELECT e.last_name,m.last_name
+FROM employees e,employees m 
+WHERE e.`manager_id`=m.`employee_id`;
+</code></pre><h2 id="进阶7：子查询"><a href="#进阶7：子查询" class="headerlink" title="进阶7：子查询"></a>进阶7：子查询</h2><p>含义：</p>
+<pre><code>一条查询语句中又嵌套了另一条完整的select语句，其中被嵌套的select语句，称为子查询或内查询
+在外面的查询语句，称为主查询或外查询
+</code></pre><p>特点：</p>
+<pre><code>1、子查询都放在小括号内
+2、子查询可以放在from后面、select后面、where后面、having后面，但一般放在条件的右侧
+3、子查询优先于主查询执行，主查询使用了子查询的执行结果
+4、子查询根据查询结果的行数不同分为以下两类：
+① 单行子查询
+    结果集只有一行
+    一般搭配单行操作符使用：&gt; &lt; = &lt;&gt; &gt;= &lt;= 
+    非法使用子查询的情况：
+    a、子查询的结果为一组值
+    b、子查询的结果为空
+
+② 多行子查询
+    结果集有多行
+    一般搭配多行操作符使用：any、all、in、not in
+    in： 属于子查询结果中的任意一个就行
+    any和all往往可以用其他查询代替
+</code></pre><h2 id="进阶8：分页查询"><a href="#进阶8：分页查询" class="headerlink" title="进阶8：分页查询"></a>进阶8：分页查询</h2><p>应用场景：</p>
+<pre><code>实际的web项目中需要根据用户的需求提交对应的分页查询的sql语句
+</code></pre><p>语法：</p>
+<pre><code>select 字段|表达式,...
+from 表
+【where 条件】
+【group by 分组字段】
+【having 条件】
+【order by 排序的字段】
+limit 【起始的条目索引，】条目数;
+</code></pre><p>特点：</p>
+<pre><code>1.起始条目索引从0开始
+
+2.limit子句放在查询语句的最后
+
+3.公式：select * from  表 limit （page-1）*sizePerPage,sizePerPage
+假如:
+每页显示条目数sizePerPage
+要显示的页数 page
+</code></pre><h2 id="进阶9：联合查询"><a href="#进阶9：联合查询" class="headerlink" title="进阶9：联合查询"></a>进阶9：联合查询</h2><p>引入：<br>    union 联合、合并</p>
+<p>语法：</p>
+<pre><code>select 字段|常量|表达式|函数 【from 表】 【where 条件】 union 【all】
+select 字段|常量|表达式|函数 【from 表】 【where 条件】 union 【all】
+select 字段|常量|表达式|函数 【from 表】 【where 条件】 union  【all】
+.....
+select 字段|常量|表达式|函数 【from 表】 【where 条件】
+</code></pre><p>特点：</p>
+<pre><code>1、多条查询语句的查询的列数必须是一致的
+2、多条查询语句的查询的列的类型几乎相同
+3、union代表去重，union all代表不去重
+</code></pre><h2 id="DML语言"><a href="#DML语言" class="headerlink" title="DML语言"></a>DML语言</h2><h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><p>语法：<br>    insert into 表名(字段名，…)<br>    values(值1，…);</p>
+<p>特点：</p>
+<pre><code>1、字段类型和值类型一致或兼容，而且一一对应
+2、可以为空的字段，可以不用插入值，或用null填充
+3、不可以为空的字段，必须插入值
+4、字段个数和值的个数必须一致
+5、字段可以省略，但默认所有字段，并且顺序和表中的存储顺序一致
+</code></pre><h3 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h3><p>修改单表语法：</p>
+<pre><code>update 表名 set 字段=新值,字段=新值
+【where 条件】
+</code></pre><p>修改多表语法：</p>
+<pre><code>update 表1 别名1,表2 别名2
+set 字段=新值，字段=新值
+where 连接条件
+and 筛选条件
+</code></pre><h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><p>方式1：delete语句 </p>
+<p>单表的删除： ★<br>    delete from 表名 【where 筛选条件】</p>
+<p>多表的删除：<br>    delete 别名1，别名2<br>    from 表1 别名1，表2 别名2<br>    where 连接条件<br>    and 筛选条件;</p>
+<p>方式2：truncate语句</p>
+<pre><code>truncate table 表名
+</code></pre><p>两种方式的区别【面试题】</p>
+<pre><code>#1.truncate不能加where条件，而delete可以加where条件
+
+#2.truncate的效率高一丢丢
+
+#3.truncate 删除带自增长的列的表后，如果再插入数据，数据从1开始
+#delete 删除带自增长列的表后，如果再插入数据，数据从上一次的断点处开始
+
+#4.truncate删除不能回滚，delete删除可以回滚
+</code></pre><h2 id="DDL语句"><a href="#DDL语句" class="headerlink" title="DDL语句"></a>DDL语句</h2><h3 id="库和表的管理"><a href="#库和表的管理" class="headerlink" title="库和表的管理"></a>库和表的管理</h3><p>库的管理：</p>
+<pre><code>一、创建库
+create database 库名
+二、删除库
+drop database 库名
+</code></pre><p>表的管理：</p>
+<pre><code>#1.创建表
+CREATE TABLE IF NOT EXISTS stuinfo(
+    stuId INT,
+    stuName VARCHAR(20),
+    gender CHAR,
+    bornDate DATETIME
+);
+
+DESC studentinfo;
+#2.修改表 alter
+语法：ALTER TABLE 表名 ADD|MODIFY|DROP|CHANGE COLUMN 字段名 【字段类型】;
+
+#①修改字段名
+ALTER TABLE studentinfo CHANGE  COLUMN sex gender CHAR;
+
+#②修改表名
+ALTER TABLE stuinfo RENAME [TO]  studentinfo;
+#③修改字段类型和列级约束
+ALTER TABLE studentinfo MODIFY COLUMN borndate DATE ;
+
+#④添加字段
+
+ALTER TABLE studentinfo ADD COLUMN email VARCHAR(20) first;
+#⑤删除字段
+ALTER TABLE studentinfo DROP COLUMN email;
+#3.删除表
+
+DROP TABLE [IF EXISTS] studentinfo;
+</code></pre><p>​        </p>
+<h3 id="常见类型"><a href="#常见类型" class="headerlink" title="常见类型"></a>常见类型</h3><pre><code>整型：
+
+小数：
+    浮点型
+    定点型
+字符型：
+日期型：
+Blob类型：
+</code></pre><h3 id="常见约束"><a href="#常见约束" class="headerlink" title="常见约束"></a>常见约束</h3><pre><code>NOT NULL
+DEFAULT
+UNIQUE
+CHECK
+PRIMARY KEY
+FOREIGN KEY
+</code></pre><h2 id="数据库事务"><a href="#数据库事务" class="headerlink" title="数据库事务"></a>数据库事务</h2><h3 id="含义"><a href="#含义" class="headerlink" title="含义"></a>含义</h3><p>​    通过一组逻辑操作单元（一组DML——sql语句），将数据从一种状态切换到另外一种状态</p>
+<h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><p>​    （ACID）<br>​    原子性：要么都执行，要么都回滚<br>​    一致性：保证数据的状态操作前和操作后保持一致<br>​    隔离性：多个事务同时操作相同数据库的同一个数据时，一个事务的执行不受另外一个事务的干扰<br>​    持久性：一个事务一旦提交，则数据将持久化到本地，除非其他事务对其进行修改</p>
+<p>相关步骤：</p>
+<pre><code>1、开启事务
+2、编写事务的一组逻辑操作单元（多条sql语句）
+3、提交事务或回滚事务
+</code></pre><h3 id="事务的分类："><a href="#事务的分类：" class="headerlink" title="事务的分类："></a>事务的分类：</h3><p>隐式事务，没有明显的开启和结束事务的标志</p>
+<pre><code>比如
+insert、update、delete语句本身就是一个事务
+</code></pre><p>显式事务，具有明显的开启和结束事务的标志</p>
+<pre><code>1、开启事务
+取消自动提交事务的功能
+
+2、编写事务的一组逻辑操作单元（多条sql语句）
+insert
+update
+delete
+
+3、提交事务或回滚事务
+</code></pre><h3 id="使用到的关键字"><a href="#使用到的关键字" class="headerlink" title="使用到的关键字"></a>使用到的关键字</h3><pre><code>set autocommit=0;
+start transaction;
+commit;
+rollback;
+
+savepoint  断点
+commit to 断点
+rollback to 断点
+</code></pre><h3 id="事务的隔离级别"><a href="#事务的隔离级别" class="headerlink" title="事务的隔离级别:"></a>事务的隔离级别:</h3><p>事务并发问题如何发生？</p>
+<pre><code>当多个事务同时操作同一个数据库的相同数据时
+</code></pre><p>事务的并发问题有哪些？</p>
+<pre><code>脏读：一个事务读取到了另外一个事务未提交的数据
+不可重复读：同一个事务中，多次读取到的数据不一致
+幻读：一个事务读取数据时，另外一个事务进行更新，导致第一个事务读取到了没有更新的数据
+</code></pre><p>如何避免事务的并发问题？</p>
+<pre><code>通过设置事务的隔离级别
+1、READ UNCOMMITTED
+2、READ COMMITTED 可以避免脏读
+3、REPEATABLE READ 可以避免脏读、不可重复读和一部分幻读
+4、SERIALIZABLE可以避免脏读、不可重复读和幻读
+</code></pre><p>设置隔离级别：</p>
+<pre><code>set session|global  transaction isolation level 隔离级别名;
+</code></pre><p>查看隔离级别：</p>
+<pre><code>select @@tx_isolation;
+</code></pre><h2 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h2><p>含义：理解成一张虚拟的表</p>
+<p>视图和表的区别：</p>
+<pre><code>    使用方式    占用物理空间
+
+视图    完全相同    不占用，仅仅保存的是sql逻辑
+
+表    完全相同    占用
+</code></pre><p>视图的好处：</p>
+<pre><code>1、sql语句提高重用性，效率高
+2、和表实现了分离，提高了安全性
+</code></pre><h3 id="视图的创建"><a href="#视图的创建" class="headerlink" title="视图的创建"></a>视图的创建</h3><p>​    语法：<br>​    CREATE VIEW  视图名<br>​    AS<br>​    查询语句;</p>
+<h3 id="视图的增删改查"><a href="#视图的增删改查" class="headerlink" title="视图的增删改查"></a>视图的增删改查</h3><pre><code>1、查看视图的数据 ★
+SELECT * FROM my_v4;
+SELECT * FROM my_v1 WHERE last_name=&apos;Partners&apos;;
+
+2、插入视图的数据
+INSERT INTO my_v4(last_name,department_id) VALUES(&apos;虚竹&apos;,90);
+
+3、修改视图的数据
+UPDATE my_v4 SET last_name =&apos;梦姑&apos; WHERE last_name=&apos;虚竹&apos;;
+
+4、删除视图的数据
+DELETE FROM my_v4;
+</code></pre><h3 id="某些视图不能更新"><a href="#某些视图不能更新" class="headerlink" title="某些视图不能更新"></a>某些视图不能更新</h3><p>​    包含以下关键字的sql语句：分组函数、distinct、group  by、having、union或者union all<br>​    常量视图<br>​    Select中包含子查询<br>​    join<br>​    from一个不能更新的视图<br>​    where子句的子查询引用了from子句中的表</p>
+<h3 id="视图逻辑的更新"><a href="#视图逻辑的更新" class="headerlink" title="视图逻辑的更新"></a>视图逻辑的更新</h3><p>​    #方式一：<br>​    CREATE OR REPLACE VIEW test_v7<br>​    AS<br>​    SELECT last_name FROM employees<br>​    WHERE employee_id&gt;100;<br>​    </p>
+<pre><code>#方式二:
+ALTER VIEW test_v7
+AS
+SELECT employee_id FROM employees;
+
+SELECT * FROM test_v7;
+</code></pre><h3 id="视图的删除"><a href="#视图的删除" class="headerlink" title="视图的删除"></a>视图的删除</h3><p>​    DROP VIEW test_v1,test_v2,test_v3;</p>
+<h3 id="视图结构的查看"><a href="#视图结构的查看" class="headerlink" title="视图结构的查看"></a>视图结构的查看</h3><p>​    DESC test_v7;<br>​    SHOW CREATE VIEW test_v7;</p>
+<h2 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h2><p>含义：一组经过预先编译的sql语句的集合<br>好处：</p>
+<pre><code>1、提高了sql语句的重用性，减少了开发程序员的压力
+2、提高了效率
+3、减少了传输次数
+</code></pre><p>分类：</p>
+<pre><code>1、无返回无参
+2、仅仅带in类型，无返回有参
+3、仅仅带out类型，有返回无参
+4、既带in又带out，有返回有参
+5、带inout，有返回有参
+注意：in、out、inout都可以在一个存储过程中带多个
+</code></pre><h3 id="创建存储过程"><a href="#创建存储过程" class="headerlink" title="创建存储过程"></a>创建存储过程</h3><p>语法：</p>
+<pre><code>create procedure 存储过程名(in|out|inout 参数名  参数类型,...)
+begin
+    存储过程体
+
+end
+</code></pre><p>类似于方法：</p>
+<pre><code>修饰符 返回类型 方法名(参数类型 参数名,...){
+
+    方法体;
+}
+</code></pre><p>注意</p>
+<pre><code>1、需要设置新的结束标记
+delimiter 新的结束标记
+示例：
+delimiter $
+
+CREATE PROCEDURE 存储过程名(IN|OUT|INOUT 参数名  参数类型,...)
+BEGIN
+    sql语句1;
+    sql语句2;
+
+END $
+
+2、存储过程体中可以有多条sql语句，如果仅仅一条sql语句，则可以省略begin end
+
+3、参数前面的符号的意思
+in:该参数只能作为输入 （该参数不能做返回值）
+out：该参数只能作为输出（该参数只能做返回值）
+inout：既能做输入又能做输出
+</code></pre><h1 id="调用存储过程"><a href="#调用存储过程" class="headerlink" title="调用存储过程"></a>调用存储过程</h1><p>​    call 存储过程名(实参列表)</p>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><h3 id="创建函数"><a href="#创建函数" class="headerlink" title="创建函数"></a>创建函数</h3><p>学过的函数：LENGTH、SUBSTR、CONCAT等<br>语法：</p>
+<pre><code>CREATE FUNCTION 函数名(参数名 参数类型,...) RETURNS 返回类型
+BEGIN
+    函数体
+
+END
+</code></pre><h3 id="调用函数"><a href="#调用函数" class="headerlink" title="调用函数"></a>调用函数</h3><p>​    SELECT 函数名（实参列表）</p>
+<h3 id="函数和存储过程的区别"><a href="#函数和存储过程的区别" class="headerlink" title="函数和存储过程的区别"></a>函数和存储过程的区别</h3><pre><code>        关键字        调用语法    返回值            应用场景
+函数        FUNCTION    SELECT 函数()    只能是一个        一般用于查询结果为一个值并返回时，当有返回值而且仅仅一个
+存储过程    PROCEDURE    CALL 存储过程()    可以有0个或多个        一般用于更新
+</code></pre><h2 id="流程控制结构"><a href="#流程控制结构" class="headerlink" title="流程控制结构"></a>流程控制结构</h2><h3 id="系统变量"><a href="#系统变量" class="headerlink" title="系统变量"></a>系统变量</h3><p>一、全局变量</p>
+<p>作用域：针对于所有会话（连接）有效，但不能跨重启</p>
+<pre><code>查看所有全局变量
+SHOW GLOBAL VARIABLES;
+查看满足条件的部分系统变量
+SHOW GLOBAL VARIABLES LIKE &apos;%char%&apos;;
+查看指定的系统变量的值
+SELECT @@global.autocommit;
+为某个系统变量赋值
+SET @@global.autocommit=0;
+SET GLOBAL autocommit=0;
+</code></pre><p>二、会话变量</p>
+<p>作用域：针对于当前会话（连接）有效</p>
+<pre><code>查看所有会话变量
+SHOW SESSION VARIABLES;
+查看满足条件的部分会话变量
+SHOW SESSION VARIABLES LIKE &apos;%char%&apos;;
+查看指定的会话变量的值
+SELECT @@autocommit;
+SELECT @@session.tx_isolation;
+为某个会话变量赋值
+SET @@session.tx_isolation=&apos;read-uncommitted&apos;;
+SET SESSION tx_isolation=&apos;read-committed&apos;;
+</code></pre><h3 id="自定义变量"><a href="#自定义变量" class="headerlink" title="自定义变量"></a>自定义变量</h3><p>一、用户变量</p>
+<p>声明并初始化：</p>
+<pre><code>SET @变量名=值;
+SET @变量名:=值;
+SELECT @变量名:=值;
+</code></pre><p>赋值：</p>
+<pre><code>方式一：一般用于赋简单的值
+SET 变量名=值;
+SET 变量名:=值;
+SELECT 变量名:=值;
+
+
+方式二：一般用于赋表 中的字段值
+SELECT 字段名或表达式 INTO 变量
+FROM 表;
+</code></pre><p>使用：</p>
+<pre><code>select @变量名;
+</code></pre><p>二、局部变量</p>
+<p>声明：</p>
+<pre><code>declare 变量名 类型 【default 值】;
+</code></pre><p>赋值：</p>
+<pre><code>方式一：一般用于赋简单的值
+SET 变量名=值;
+SET 变量名:=值;
+SELECT 变量名:=值;
+
+
+方式二：一般用于赋表 中的字段值
+SELECT 字段名或表达式 INTO 变量
+FROM 表;
+</code></pre><p>使用：</p>
+<pre><code>select 变量名
+</code></pre><p>二者的区别：</p>
+<pre><code>作用域            定义位置        语法
+</code></pre><p>用户变量    当前会话        会话的任何地方        加@符号，不用指定类型<br>局部变量    定义它的BEGIN END中     BEGIN END的第一句话    一般不用加@,需要指定类型</p>
+<h3 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h3><p>一、if函数<br>    语法：if(条件，值1，值2)<br>    特点：可以用在任何位置</p>
+<p>二、case语句</p>
+<p>语法：</p>
+<pre><code>情况一：类似于switch
+case 表达式
+when 值1 then 结果1或语句1(如果是语句，需要加分号) 
+when 值2 then 结果2或语句2(如果是语句，需要加分号)
+...
+else 结果n或语句n(如果是语句，需要加分号)
+end 【case】（如果是放在begin end中需要加上case，如果放在select后面不需要）
+
+情况二：类似于多重if
+case 
+when 条件1 then 结果1或语句1(如果是语句，需要加分号) 
+when 条件2 then 结果2或语句2(如果是语句，需要加分号)
+...
+else 结果n或语句n(如果是语句，需要加分号)
+end 【case】（如果是放在begin end中需要加上case，如果放在select后面不需要）
+</code></pre><p>特点：<br>    可以用在任何位置</p>
+<p>三、if elseif语句</p>
+<p>语法：</p>
+<pre><code>if 情况1 then 语句1;
+elseif 情况2 then 语句2;
+...
+else 语句n;
+end if;
+</code></pre><p>特点：<br>    只能用在begin end中！！！！！！！！！！！！！！！</p>
+<p>三者比较：<br>            应用场合<br>    if函数        简单双分支<br>    case结构    等值判断 的多分支<br>    if结构        区间判断 的多分支</p>
+<h3 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h3><p>语法：</p>
+<pre><code>【标签：】WHILE 循环条件  DO
+    循环体
+END WHILE 【标签】;
+</code></pre><p>特点：</p>
+<pre><code>只能放在BEGIN END里面
+
+如果要搭配leave跳转语句，需要使用标签，否则可以不用标签
+
+leave类似于java中的break语句，跳出所在循环！！！
+</code></pre>
+      </div>
+
+      <div class="article-footer">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MySQL/" rel="tag">#MySQL</a></li></ul>
+      </div>
+
+      <div class="article-navs">
+        
+<nav class="card-container card-article-nav">
+  <div class="card-wrap">
+    
+      <div id="article-nav-newer" class="card-item">
+        <article>
+          
+          <a class="card-link article-nav-link" href="/2020/03/022130.html"></a>
+          <strong class="article-nav-caption">Newer</strong>
+          <p class="article-nav-title">
+            
+              02_函数高级
+            
+          </p>
+        </article>
+      </div>
+    
+    
+      <div id="article-nav-older" class="card-item">
+        <article>
+          
+          <a class="card-link article-nav-link" href="/2020/03/021741.html"></a>
+          <strong class="article-nav-caption">Older</strong>
+          <p class="article-nav-title">
+            
+              01_基础总结深入
+            
+          </p>
+        </article>
+      </div>
+    
+  </div>
+</nav>
+
+      </div>
+      
+      
+
+  
+  <div class="valine-container">
+    <div id="valine_thread" class="valine-thread"></div>
+  </div>
+
+  
+  
+  <div class="disqus-container">
+    <p id="disqus_error" class="disqus-error" style="display: none;">如果你看不到评论，那么就真的看不到评论 w(゜Д゜)w</p>
+    <div id="disqus_thread" class="disqus-thread"></div>
+  </div>
+  
+
+
+    </div>
+  </article>
+</div>
+
+    <!-- footer container -->
+<footer id="footer" class="footer">
+  <div class="footer-container">
+    <p>&copy; 2020 <a href="/" target="_blank">后来@</a></p>
+
+    <style>
+      .colour-text {
+        display: inline-block;
+        margin: 20px auto;
+        text-align: left;
+        background-image: linear-gradient(to right, deeppink, pink, hotpink, lightpink, deeppink);
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+      }
+    </style>
+    
+    <p class="colour-text">
+      “关于泉前辈，我可以和他约会吗？” “不可以”
+    </p>
+
+    
+
+    
+      <p><a href="http://www.miitbeian.gov.cn" target="_blank">蜀ICP备15014309号</a></p>
+    
+
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> Theme - <a href="https://github.com/miiiku/flex-block" target="_blank">flex-block</a></p>
+  </div>
+</footer>
+  </div>
+
+  
+  
+
+  <!-- disqus 评论 start -->
+  <script type="text/javascript">
+    /*
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    
+    /*
+      var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+    */
+
+    (function() {
+      var d = document, s = d.createElement('script'), c = d.querySelector(".disqus-container");
+      if (!c) return;
+      s.src = 'https://sukoshi95.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      s.onerror = () => {
+        let t = document.querySelector("#disqus_error");
+        t.style.display = "block";
+      }
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <!-- disqus 评论 end -->
+  
+
+  <!-- aplayer 音频 start -->
+  
+<link rel="stylesheet" href="/lib/APlayer.min.css">
+
+  
+<script src="/lib/APlayer.min.js"></script>
+
+  <script type="text/javascript">
+    const aplayer = document.querySelectorAll(".aplayer");
+    aplayer && initaplayer(aplayer);
+    function initaplayer(els) {
+      let elsArr = Array.from(els);
+      elsArr.forEach(el => {
+        new APlayer({
+          container: el,
+          audio: { ...el.dataset },
+          theme: "#b7daff",
+          lrcType: 3,
+          autoplay: false,
+          loop: false,
+          mutex: true,
+        });
+      });
+    }
+  </script>
+  <!-- aplayer 音频 end -->
+  
+
+<!-- dplayer 视频 start -->
+
+<link rel="stylesheet" href="/lib/DPlayer.min.css">
+
+
+<script src="/lib/DPlayer.min.js"></script>
+
+<script type="text/javascript">
+  const dplayer = document.querySelectorAll(".dplayer");
+  dplayer && initDPlayer(dplayer);
+  function initDPlayer(els) {
+    let elsArr = Array.from(els);
+    elsArr.forEach(el => {
+      let url = el.dataset.url;
+      let cover = el.dataset.cover;
+      new DPlayer({
+        container: el,
+        video: { url: url, pic: cover },
+        theme: "#b7daff",
+        autoplay: false,
+        loop: false,
+        mutex: true,
+      });
+    });
+  }
+</script>
+<!-- dplayer 视频 end -->
+
+
+<!-- waterfall 瀑布流 start -->
+
+<script src="/lib/waterfall.min.js"></script>
+
+<script type="text/javascript">
+
+const waterfalls = document.querySelectorAll(".waterfall-container");
+
+if (waterfalls && waterfalls.length > 0) {
+  waterfalls.forEach((waterfall, index) => {
+    let cls = "waterfall-container-" + index;
+    waterfall.classList.add(cls);
+    initWaterfall(cls, waterfall);
+  });
+}
+
+function initWaterfall(selector, el) {
+  const options = {};
+  if (Object.keys(el.dataset).length > 0) {
+    for (let k in el.dataset) {
+      options[k] = el.dataset[k];
+    }
+  }
+  waterfall(`.${selector}`, options);
+}
+</script>
+<!-- waterfall 瀑布流 end -->
+
+
+  <!-- zoom start -->
+  
+<script src="/lib/zoom.min.js"></script>
+
+  <script type="text/javascript">
+    document.querySelector(".article-content") && zoom(".article-content");
+  </script>
+  <!-- zoom end -->
+  
+
+
+
+  
+
+
+  
+
+
+  <!-- Baidu Analytics START -->
+  <script>
+    var _hmt = _hmt || [];
+    (function () {
+      if (window.location.hostname === "localhost" || window.location.hostname.startsWith("192.168")) {
+        return console.log("本地调试");
+      }
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?410f4beade12e8df64ea4c5622313220";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  <!-- Baidu Analytics End -->
+
+  
+
+
+  <!-- Tencent Analytics START -->
+  <script>
+    (function() {
+      if (window.location.hostname === "localhost" || window.location.hostname.startsWith("192.168")) {
+        return console.log("本地调试");
+      }
+      let s = document.querySelector("script");
+      let hm = document.createElement("script");
+      hm.charset = "UTF-8";
+      hm.src = "https://tajs.qq.com/stats?sId=64852535";
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  <!-- Tencent Analytics End -->
+
+
+
+<script src="/js/script.js"></script>
+
+  
+  <!-- 尾部用户自定义相关内容 -->
+
+<!-- 插入Sentry -->
+<script>
+  (function () {
+    if (window.location.hostname === "localhost" || window.location.hostname.startsWith("192.168")) {
+      return console.log("本地调试");
+    }
+    let hm = document.createElement("script");
+    let s = document.querySelector("script");
+    hm.src = "https://browser.sentry-cdn.com/5.10.2/bundle.min.js";
+    hm.integrity = "sha384-ssBfXiBvlVC7bdA/VX03S88B5MwXQWdnpJRbUYFPgswlOBwETwTp6F3SMUNpo9M9";
+    hm.crossOrigin = "anonymous";
+    hm.onload = function () {
+      Sentry.init({ dsn: "https://d4e3bac81c30416fb7b917004fdc2a6f@sentry.io/1864685" });
+    }
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+<!-- 插入Sentry End -->
+
+<!-- 插入百度ESO相关 START -->
+<script>
+  var _hmt = _hmt || [];
+  (function () {
+    if (window.location.hostname === "localhost" || window.location.hostname.startsWith("192.168")) {
+      return console.log("本地调试");
+    }
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?410f4beade12e8df64ea4c5622313220";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  });
+</script>
+<!-- 插入百度ESO相关 END -->
+
+<!-- 插入百度链接自动提交 START -->
+<script>
+  (function () {
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+<!-- 插入百度链接自动提交 END --> 
+</body>
+</html>
