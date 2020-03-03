@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  
+    <meta name="description" content="我在这里，一个死宅的个人自留地，一个基于hexo的个人博客。随便写写，分享生活，文笔不好，欢迎吐槽！">
+  
+
+  
+    <meta name="keywords" content="我在这里 个人博客 自留地 死宅 hexo flex-block">
+  
+
+  
+    <meta name="author" content="后来@">
+  
+
+  
+
+  
+
+  <title>zsh和oh-my-zsh常用配置和命令 | 后来@&#39;s Blog</title>
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    <link href="https://cdn.bootcss.com/highlight.js/9.15.6/styles/monokai.min.css" rel="stylesheet">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+  <div class="root-container">
+    <!-- navbar -->
+<nav class="navbar">
+  <div class="navbar-content">
+    <!-- logo -->
+    <div class="navbar-logo">
+      <a href="/">
+        
+          后来@&#39;s Blog
+        
+      </a>
+    </div>
+    <!-- link -->
+    <div class="navbar-link">
+      <div class="navbar-btn">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <ul class="navbar-list">
+        
+          <li class="navbar-list-item"><a href="/">首页</a></li>
+        
+          <li class="navbar-list-item"><a href="/tags">标签</a></li>
+        
+          <li class="navbar-list-item"><a href="/links">友链</a></li>
+        
+          <li class="navbar-list-item"><a href="/messages">留言</a></li>
+        
+          <li class="navbar-list-item"><a href="/about">关于</a></li>
+        
+          <li class="navbar-list-item"><a href="/anime">アニメ</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    
+<!-- header container -->
+<header class="header-container post">
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+    <div class="header-content">
+      <div class="post-image" style="background-image: url(https://qiniu.miiiku.xyz/src/images/cover-6.jpg)"></div>
+      <div class="post-text">
+        <div class="type-wrap">
+          <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+        </div>
+        <h1 class="title-wrap">zsh和oh-my-zsh常用配置和命令</h1>
+        <h2 class="title-sub-wrap">
+          <strong>后来@</strong>
+          <span>发布于</span>
+          
+  <a href="javascript:;" class="article-date">
+    <time datetime="2020-01-17T11:05:07.000Z" itemprop="datePublished">2020-01-17</time>
+  </a>
+
+        </h2>
+      </div>
+    </div>
+  
+
+  
+  
+
+  </header>
+
+    <!-- 文章 -->
+
+<!-- 文章内容 -->
+
+<div class="body-container">
+  <article class="content-container article-container">
+    <div class="article-content">
+      
+      
+
+      <div class="article-entry">
+        <h4 id="查看当前环境下的shell"><a href="#查看当前环境下的shell" class="headerlink" title="查看当前环境下的shell"></a>查看当前环境下的shell</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">echo</span> <span class="hljs-variable">$SHELL</span><br></code></pre></td></tr></table></figure>
+<h4 id="查看系统自带的shell"><a href="#查看系统自带的shell" class="headerlink" title="查看系统自带的shell"></a>查看系统自带的shell</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">cat /etc/shells<br></code></pre></td></tr></table></figure>
+<h4 id="将zsh设置为默认shell"><a href="#将zsh设置为默认shell" class="headerlink" title="将zsh设置为默认shell"></a>将<em>zsh</em>设置为默认shell</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">chsh -s /bin/zsh<br></code></pre></td></tr></table></figure>
+<p>在安装了<code>oh-my-zsh</code>以后，会在 <strong><code>~</code></strong> 目录下创建一个 <strong><code>.zshrc</code></strong> 文件。</p>
+<h4 id="查看oh-my-zsh可用主题"><a href="#查看oh-my-zsh可用主题" class="headerlink" title="查看oh-my-zsh可用主题:"></a>查看<code>oh-my-zsh</code>可用主题:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs base">ls ~&#x2F;.oh-my-zsh&#x2F;themes<br></code></pre></td></tr></table></figure>
+<h4 id="修改oh-my-zsh主题"><a href="#修改oh-my-zsh主题" class="headerlink" title="修改oh-my-zsh主题:"></a>修改<code>oh-my-zsh</code>主题:</h4><p>编辑<code>~/.zshrc</code>文件，将<code>ZSH_THEME</code>的值改为需要选择的主题</p>
+<h4 id="查看oh-my-zsh可用扩展"><a href="#查看oh-my-zsh可用扩展" class="headerlink" title="查看oh-my-zsh可用扩展:"></a>查看<code>oh-my-zsh</code>可用扩展:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs base">cat ~&#x2F;.oh-my-zsh&#x2F;plugins&#x2F;<br></code></pre></td></tr></table></figure>
+<h4 id="开启某个扩展"><a href="#开启某个扩展" class="headerlink" title="开启某个扩展:"></a>开启某个扩展:</h4><p>编辑<code>~/.zshrc</code>文件，将<code>plugins</code>的值改为需要开启的扩展，默认开启了git扩展</p>
+<h4 id="查看某个扩展的信息内容-如查看git"><a href="#查看某个扩展的信息内容-如查看git" class="headerlink" title="查看某个扩展的信息内容(如查看git):"></a>查看某个扩展的信息内容(如查看git):</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs base">cat ~&#x2F;.oh-my-zsh&#x2F;plugins&#x2F;git&#x2F;git.plugin.zsh<br></code></pre></td></tr></table></figure>
+<p>打印如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs log">alias g&#x3D;&#39;git&#39;<br><br>alias ga&#x3D;&#39;git add&#39;<br>alias gaa&#x3D;&#39;git add --all&#39;<br>alias gapa&#x3D;&#39;git add --patch&#39;<br>alias gau&#x3D;&#39;git add --update&#39;<br>alias gav&#x3D;&#39;git add --verbose&#39;<br>alias gap&#x3D;&#39;git apply&#39;<br><br>alias gb&#x3D;&#39;git branch&#39;<br>alias gba&#x3D;&#39;git branch -a&#39;<br>alias gbd&#x3D;&#39;git branch -d&#39;<br></code></pre></td></tr></table></figure>
+<h4 id="autojump"><a href="#autojump" class="headerlink" title="autojump"></a>autojump</h4><h1 id="常用快捷键"><a href="#常用快捷键" class="headerlink" title="常用快捷键"></a>常用快捷键</h1><h4 id="命令历史记录"><a href="#命令历史记录" class="headerlink" title="命令历史记录"></a>命令历史记录</h4><p>一旦在shell敲入命令并执行后，shell就会存储你所键入命令的历史计入，存放在<code>～/.zsh_history</code>文件中。</p>
+<ul>
+<li><p>可以通过按方向键⬆️或⬇️来查看之前执行的命令</p>
+</li>
+<li><p>可以用 <strong><code>r</code></strong> 来执行上一条命令</p>
+</li>
+<li><p>可以用 <strong><code>ctrl + r</code></strong> 来搜索键入的命令历史记录</p>
+</li>
+</ul>
+<h4 id="命令别名"><a href="#命令别名" class="headerlink" title="命令别名"></a>命令别名</h4><p>可以简化命令输入，如创建一个别名 <strong><code>ip</code></strong> 来查看当前ip</p>
+<p>编辑<code>~/.zshrc</code>文件，在尾部添加如下内容:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">alias</span> ip=<span class="hljs-string">"curl cip.cc"</span><br></code></pre></td></tr></table></figure>
+<p>打印如下信息:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs log">IP	: *.*.*.*<br>地址	: 中国  四川  成都<br>运营商	: 移动<br><br>数据二	: 四川省成都市 | 移动<br><br>数据三	: 中国四川成都 | 移动<br><br>URL	: http:&#x2F;&#x2F;www.cip.cc&#x2F;*.*.*.*<br></code></pre></td></tr></table></figure>
+<p><strong>在shell中键入<code>alias</code>可查看所有的别名命令</strong></p>
+<h4 id="路径快速补全"><a href="#路径快速补全" class="headerlink" title="路径快速补全"></a>路径快速补全</h4><p>在知道路径的情况下，如<code>/usr/local/bin</code>，可以在shell中键入 <code>cd /u/l/b</code>之后按<code>tab</code>进行快速补全调转到指定目录</p>
+<h4 id="列表快速补全"><a href="#列表快速补全" class="headerlink" title="列表快速补全"></a>列表快速补全</h4><p>在shell中键入字符以后连按两次<code>tab</code>会列出所有的补全列表并直接开始选择，补全项可以用 <strong><code>ctrl + n/p/f/b</code></strong> 来进行上下左右切换</p>
+<h4 id="历史过滤"><a href="#历史过滤" class="headerlink" title="历史过滤"></a>历史过滤</h4><p>在shell中按上下方向键可以查找键入过的历史命令，zsh中是支持<strong>限制查找</strong>，如先输入<code>ls</code>然后在按方向键，则只会查找用过的<code>ls</code>相关的命令</p>
+
+      </div>
+
+      <div class="article-footer">
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shell/" rel="tag">#shell</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/zsh/" rel="tag">#zsh</a></li></ul>
+      </div>
+
+      <div class="article-navs">
+        
+<nav class="card-container card-article-nav">
+  <div class="card-wrap">
+    
+      <div id="article-nav-newer" class="card-item">
+        <article>
+          
+          <a class="card-link article-nav-link" href="/2020/03/021756.html"></a>
+          <strong class="article-nav-caption">Newer</strong>
+          <p class="article-nav-title">
+            
+              MySQL基础
+            
+          </p>
+        </article>
+      </div>
+    
+    
+      <div id="article-nav-older" class="card-item img">
+        <article>
+          
+            <div class="card-cover" style="background-image: url(https://qiniu.miiiku.xyz/src/images/cover-2.jpg)"></div>
+          
+          <a class="card-link article-nav-link" href="/2020/01/141127.html"></a>
+          <strong class="article-nav-caption">Older</strong>
+          <p class="article-nav-title">
+            
+              日语五十音
+            
+          </p>
+        </article>
+      </div>
+    
+  </div>
+</nav>
+
+      </div>
+      
+      
+
+  
+  <div class="valine-container">
+    <div id="valine_thread" class="valine-thread"></div>
+  </div>
+
+  
+  
+  <div class="disqus-container">
+    <p id="disqus_error" class="disqus-error" style="display: none;">如果你看不到评论，那么就真的看不到评论 w(゜Д゜)w</p>
+    <div id="disqus_thread" class="disqus-thread"></div>
+  </div>
+  
+
+
+    </div>
+  </article>
+</div>
+
+    <!-- footer container -->
+<footer id="footer" class="footer">
+  <div class="footer-container">
+    <p>&copy; 2020 <a href="/" target="_blank">后来@</a></p>
+
+    <style>
+      .colour-text {
+        display: inline-block;
+        margin: 20px auto;
+        text-align: left;
+        background-image: linear-gradient(to right, deeppink, pink, hotpink, lightpink, deeppink);
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+      }
+    </style>
+    
+    <p class="colour-text">
+      “关于泉前辈，我可以和他约会吗？” “不可以”
+    </p>
+
+    
+
+    
+      <p><a href="http://www.miitbeian.gov.cn" target="_blank">蜀ICP备15014309号</a></p>
+    
+
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> Theme - <a href="https://github.com/miiiku/flex-block" target="_blank">flex-block</a></p>
+  </div>
+</footer>
+  </div>
+
+  
+  
+
+  <!-- disqus 评论 start -->
+  <script type="text/javascript">
+    /*
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    
+    /*
+      var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+    */
+
+    (function() {
+      var d = document, s = d.createElement('script'), c = d.querySelector(".disqus-container");
+      if (!c) return;
+      s.src = 'https://sukoshi95.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      s.onerror = () => {
+        let t = document.querySelector("#disqus_error");
+        t.style.display = "block";
+      }
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <!-- disqus 评论 end -->
+  
+
+  <!-- aplayer 音频 start -->
+  
+<link rel="stylesheet" href="/lib/APlayer.min.css">
+
+  
+<script src="/lib/APlayer.min.js"></script>
+
+  <script type="text/javascript">
+    const aplayer = document.querySelectorAll(".aplayer");
+    aplayer && initaplayer(aplayer);
+    function initaplayer(els) {
+      let elsArr = Array.from(els);
+      elsArr.forEach(el => {
+        new APlayer({
+          container: el,
+          audio: { ...el.dataset },
+          theme: "#b7daff",
+          lrcType: 3,
+          autoplay: false,
+          loop: false,
+          mutex: true,
+        });
+      });
+    }
+  </script>
+  <!-- aplayer 音频 end -->
+  
+
+<!-- dplayer 视频 start -->
+
+<link rel="stylesheet" href="/lib/DPlayer.min.css">
+
+
+<script src="/lib/DPlayer.min.js"></script>
+
+<script type="text/javascript">
+  const dplayer = document.querySelectorAll(".dplayer");
+  dplayer && initDPlayer(dplayer);
+  function initDPlayer(els) {
+    let elsArr = Array.from(els);
+    elsArr.forEach(el => {
+      let url = el.dataset.url;
+      let cover = el.dataset.cover;
+      new DPlayer({
+        container: el,
+        video: { url: url, pic: cover },
+        theme: "#b7daff",
+        autoplay: false,
+        loop: false,
+        mutex: true,
+      });
+    });
+  }
+</script>
+<!-- dplayer 视频 end -->
+
+
+<!-- waterfall 瀑布流 start -->
+
+<script src="/lib/waterfall.min.js"></script>
+
+<script type="text/javascript">
+
+const waterfalls = document.querySelectorAll(".waterfall-container");
+
+if (waterfalls && waterfalls.length > 0) {
+  waterfalls.forEach((waterfall, index) => {
+    let cls = "waterfall-container-" + index;
+    waterfall.classList.add(cls);
+    initWaterfall(cls, waterfall);
+  });
+}
+
+function initWaterfall(selector, el) {
+  const options = {};
+  if (Object.keys(el.dataset).length > 0) {
+    for (let k in el.dataset) {
+      options[k] = el.dataset[k];
+    }
+  }
+  waterfall(`.${selector}`, options);
+}
+</script>
+<!-- waterfall 瀑布流 end -->
+
+
+  <!-- zoom start -->
+  
+<script src="/lib/zoom.min.js"></script>
+
+  <script type="text/javascript">
+    document.querySelector(".article-content") && zoom(".article-content");
+  </script>
+  <!-- zoom end -->
+  
+
+
+
+  
+
+
+  
+
+
+  <!-- Baidu Analytics START -->
+  <script>
+    var _hmt = _hmt || [];
+    (function () {
+      if (window.location.hostname === "localhost" || window.location.hostname.startsWith("192.168")) {
+        return console.log("本地调试");
+      }
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?410f4beade12e8df64ea4c5622313220";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  <!-- Baidu Analytics End -->
+
+  
+
+
+  <!-- Tencent Analytics START -->
+  <script>
+    (function() {
+      if (window.location.hostname === "localhost" || window.location.hostname.startsWith("192.168")) {
+        return console.log("本地调试");
+      }
+      let s = document.querySelector("script");
+      let hm = document.createElement("script");
+      hm.charset = "UTF-8";
+      hm.src = "https://tajs.qq.com/stats?sId=64852535";
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  <!-- Tencent Analytics End -->
+
+
+
+<script src="/js/script.js"></script>
+
+  
+  <!-- 尾部用户自定义相关内容 -->
+
+<!-- 插入Sentry -->
+<script>
+  (function () {
+    if (window.location.hostname === "localhost" || window.location.hostname.startsWith("192.168")) {
+      return console.log("本地调试");
+    }
+    let hm = document.createElement("script");
+    let s = document.querySelector("script");
+    hm.src = "https://browser.sentry-cdn.com/5.10.2/bundle.min.js";
+    hm.integrity = "sha384-ssBfXiBvlVC7bdA/VX03S88B5MwXQWdnpJRbUYFPgswlOBwETwTp6F3SMUNpo9M9";
+    hm.crossOrigin = "anonymous";
+    hm.onload = function () {
+      Sentry.init({ dsn: "https://d4e3bac81c30416fb7b917004fdc2a6f@sentry.io/1864685" });
+    }
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+<!-- 插入Sentry End -->
+
+<!-- 插入百度ESO相关 START -->
+<script>
+  var _hmt = _hmt || [];
+  (function () {
+    if (window.location.hostname === "localhost" || window.location.hostname.startsWith("192.168")) {
+      return console.log("本地调试");
+    }
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?410f4beade12e8df64ea4c5622313220";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  });
+</script>
+<!-- 插入百度ESO相关 END -->
+
+<!-- 插入百度链接自动提交 START -->
+<script>
+  (function () {
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+<!-- 插入百度链接自动提交 END --> 
+</body>
+</html>
