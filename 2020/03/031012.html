@@ -21,7 +21,7 @@
 
   
 
-  <title>Hello World | 后来@&#39;s Blog</title>
+  <title>hexo new post 文件名 | 后来@&#39;s Blog</title>
 
   
 
@@ -99,15 +99,15 @@
       <div class="post-image" style="background-image: url(https://qiniu.miiiku.xyz/src/images/banner.jpg)"></div>
       <div class="post-text">
         <div class="type-wrap">
-          
+          <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
         </div>
-        <h1 class="title-wrap">Hello World</h1>
+        <h1 class="title-wrap">hexo new post 文件名</h1>
         <h2 class="title-sub-wrap">
           <strong>后来@</strong>
           <span>发布于</span>
           
   <a href="javascript:;" class="article-date">
-    <time datetime="2020-02-29T13:40:09.000Z" itemprop="datePublished">2020-02-29</time>
+    <time datetime="2020-03-03T02:12:34.000Z" itemprop="datePublished">2020-03-03</time>
   </a>
 
         </h2>
@@ -131,11 +131,104 @@
       
 
       <div class="article-entry">
-        
+        <h1 id="hexo写作"><a href="#hexo写作" class="headerlink" title="hexo写作"></a>hexo写作</h1><p>你可以执行下列命令来创建一篇新文章或者新的页面。</p>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs gauss">$ hexo <span class="hljs-keyword">new</span> [layout] &lt;<span class="hljs-built_in">title</span>&gt;<br></code></pre></td></tr></table></figure>
+<p>您可以在命令中指定文章的布局（layout），默认为 <code>post</code>，可以通过修改 <code>_config.yml</code> 中的 <code>default_layout</code> 参数来指定默认布局。</p>
+<h3 id="布局（Layout）"><a href="#布局（Layout）" class="headerlink" title="布局（Layout）"></a>布局（Layout）</h3><p>Hexo 有三种默认布局：<code>post</code>、<code>page</code> 和 <code>draft</code>。在创建者三种不同类型的文件时，它们将会被保存到不同的路径；而您自定义的其他布局和 <code>post</code> 相同，都将储存到 <code>source/_posts</code> 文件夹。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">布局</th>
+<th style="text-align:left">路径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>post</code></td>
+<td style="text-align:left"><code>source/_posts</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>page</code></td>
+<td style="text-align:left"><code>source</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>draft</code></td>
+<td style="text-align:left"><code>source/_drafts</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>不要处理我的文章</p>
+<p>如果你不想你的文章被处理，你可以将 Front-Matter 中的<code>layout:</code> 设为 <code>false</code> 。</p>
+</blockquote>
+<h3 id="文件名称"><a href="#文件名称" class="headerlink" title="文件名称"></a>文件名称</h3><p>Hexo 默认以标题做为文件名称，但您可编辑 <code>new_post_name</code> 参数来改变默认的文件名称，举例来说，设为 <code>:year-:month-:day-:title.md</code> 可让您更方便的通过日期来管理文章。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">变量</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>:title</code></td>
+<td style="text-align:left">标题（小写，空格将会被替换为短杠）</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>:year</code></td>
+<td style="text-align:left">建立的年份，比如， <code>2015</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>:month</code></td>
+<td style="text-align:left">建立的月份（有前导零），比如， <code>04</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>:i_month</code></td>
+<td style="text-align:left">建立的月份（无前导零），比如， <code>4</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>:day</code></td>
+<td style="text-align:left">建立的日期（有前导零），比如， <code>07</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>:i_day</code></td>
+<td style="text-align:left">建立的日期（无前导零），比如， <code>7</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="草稿"><a href="#草稿" class="headerlink" title="草稿"></a>草稿</h3><p>刚刚提到了 Hexo 的一种特殊布局：<code>draft</code>，这种布局在建立时会被保存到 <code>source/_drafts</code> 文件夹，您可通过 <code>publish</code> 命令将草稿移动到 <code>source/_posts</code> 文件夹，该命令的使用方式与 <code>new</code> 十分类似，您也可在命令中指定 <code>layout</code> 来指定布局。</p>
+<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs accesslog">$ hexo publish <span class="hljs-string">[layout]</span> &lt;title&gt;<br></code></pre></td></tr></table></figure>
+<p>草稿默认不会显示在页面中，您可在执行时加上 <code>--draft</code> 参数，或是把 <code>render_drafts</code> 参数设为 <code>true</code> 来预览草稿。</p>
+<h2 id="模版（Scaffold）"><a href="#模版（Scaffold）" class="headerlink" title="模版（Scaffold）"></a>模版（Scaffold）</h2><p>在新建文章时，Hexo 会根据 <code>scaffolds</code> 文件夹内相对应的文件来建立文件，例如：</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs haxe">$ hexo <span class="hljs-keyword">new</span> <span class="hljs-type">photo</span> <span class="hljs-string">"My Gallery"</span><br></code></pre></td></tr></table></figure>
+<p>在执行这行指令时，Hexo 会尝试在 <code>scaffolds</code> 文件夹中寻找 <code>photo.md</code>，并根据其内容建立文章，以下是您可以在模版中使用的变量：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">变量</th>
+<th style="text-align:left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>layout</code></td>
+<td style="text-align:left">布局</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>title</code></td>
+<td style="text-align:left">标题</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>date</code></td>
+<td style="text-align:left">文件建立日期</td>
+</tr>
+</tbody>
+</table>
+
       </div>
 
       <div class="article-footer">
-        
+        <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/" rel="tag">#hexo</a></li></ul>
       </div>
 
       <div class="article-navs">
@@ -143,30 +236,15 @@
 <nav class="card-container card-article-nav">
   <div class="card-wrap">
     
-      <div id="article-nav-newer" class="card-item">
+    
+      <div id="article-nav-older" class="card-item">
         <article>
           
-          <a class="card-link article-nav-link" href="/2020/03/011652.html"></a>
-          <strong class="article-nav-caption">Newer</strong>
-          <p class="article-nav-title">
-            
-              第一次写博客
-            
-          </p>
-        </article>
-      </div>
-    
-    
-      <div id="article-nav-older" class="card-item img">
-        <article>
-          
-            <div class="card-cover" style="background-image: url(https://qiniu.miiiku.xyz/src/images/cover-6.jpg)"></div>
-          
-          <a class="card-link article-nav-link" href="/2020/01/171905.html"></a>
+          <a class="card-link article-nav-link" href="/2020/03/022135.html"></a>
           <strong class="article-nav-caption">Older</strong>
           <p class="article-nav-title">
             
-              zsh和oh-my-zsh常用配置和命令
+              04_线程机制与事件机制
             
           </p>
         </article>
