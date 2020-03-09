@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  
+    <meta name="description" content="我在这里，一个死宅的个人自留地，一个基于hexo的个人博客。随便写写，分享生活，文笔不好，欢迎吐槽！">
+  
+
+  
+    <meta name="keywords" content="我在这里 个人博客 自留地 死宅 hexo flex-block">
+  
+
+  
+    <meta name="author" content="后来@">
+  
+
+  
+
+  
+
+  <title>计算机组成原理 | 后来@&#39;s Blog</title>
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    <link href="https://cdn.bootcss.com/highlight.js/9.15.6/styles/monokai.min.css" rel="stylesheet">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+<body>
+  <div class="root-container">
+    <!-- navbar -->
+<nav class="navbar">
+  <div class="navbar-content">
+    <!-- logo -->
+    <div class="navbar-logo">
+      <a href="/">
+        
+          后来@&#39;s Blog
+        
+      </a>
+    </div>
+    <!-- link -->
+    <div class="navbar-link">
+      <div class="navbar-btn">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <ul class="navbar-list">
+        
+          <li class="navbar-list-item"><a href="/">首页</a></li>
+        
+          <li class="navbar-list-item"><a href="/tags">标签</a></li>
+        
+          <li class="navbar-list-item"><a href="/links">友链</a></li>
+        
+          <li class="navbar-list-item"><a href="/messages">留言</a></li>
+        
+          <li class="navbar-list-item"><a href="/about">关于</a></li>
+        
+          <li class="navbar-list-item"><a href="/anime">アニメ</a></li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    
+<!-- header container -->
+<header class="header-container post">
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+
+  
+  
+    <div class="header-content">
+      <div class="post-image" style="background-image: url(https://qiniu.miiiku.xyz/src/images/banner.jpg)"></div>
+      <div class="post-text">
+        <div class="type-wrap">
+          
+        </div>
+        <h1 class="title-wrap">计算机组成原理</h1>
+        <h2 class="title-sub-wrap">
+          <strong>后来@</strong>
+          <span>发布于</span>
+          
+  <a href="javascript:;" class="article-date">
+    <time datetime="2020-03-04T05:53:21.757Z" itemprop="datePublished">2020-03-04</time>
+  </a>
+
+        </h2>
+      </div>
+    </div>
+  
+
+  
+  
+
+  </header>
+
+    <!-- 文章 -->
+
+<!-- 文章内容 -->
+
+<div class="body-container">
+  <article class="content-container article-container">
+    <div class="article-content">
+      
+      
+
+      <div class="article-entry">
+        <h1 id="计算机组成原理"><a href="#计算机组成原理" class="headerlink" title="计算机组成原理"></a>计算机组成原理</h1><h2 id="1-1计算机的概念和类型"><a href="#1-1计算机的概念和类型" class="headerlink" title="1.1计算机的概念和类型"></a>1.1计算机的概念和类型</h2><h3 id="计算机的基本概念：一种可以存储程序，并通过执行程序指令，可以自动，高速，精确的对数字信息进行各种复杂处理，然后输出运算结果的高科技智能设备。"><a href="#计算机的基本概念：一种可以存储程序，并通过执行程序指令，可以自动，高速，精确的对数字信息进行各种复杂处理，然后输出运算结果的高科技智能设备。" class="headerlink" title="计算机的基本概念：一种可以存储程序，并通过执行程序指令，可以自动，高速，精确的对数字信息进行各种复杂处理，然后输出运算结果的高科技智能设备。"></a>计算机的基本概念：一种可以存储程序，并通过执行程序指令，可以自动，高速，精确的对数字信息进行各种复杂处理，然后输出运算结果的高科技智能设备。</h3><h3 id="5个逻辑模块"><a href="#5个逻辑模块" class="headerlink" title="5个逻辑模块"></a>5个逻辑模块</h3><ul>
+<li>输入设备</li>
+<li>输出设备</li>
+<li>运算器</li>
+<li>存储器</li>
+<li>控制器</li>
+</ul>
+<h3 id="1-1-1信息的数字化表示"><a href="#1-1-1信息的数字化表示" class="headerlink" title="1.1.1信息的数字化表示"></a>1.1.1信息的数字化表示</h3><ul>
+<li><p>1.数字代码（二进制代码）表示各种信息</p>
+<ul>
+<li>1.表示数据</li>
+<li>2.表示字符</li>
+<li>3.表示命令，状态</li>
+</ul>
+</li>
+<li><p>2.数字信号（数字型电信号）表示数字代码</p>
+<ul>
+<li>电平信号表示数字代码</li>
+<li>脉冲信号表示数字代码</li>
+</ul>
+</li>
+<li><p>3.信息数字化表示的优点</p>
+<ul>
+<li>（1）物理上易实现信息的表示和存储</li>
+<li>（2）抗干扰能力强，可靠性高</li>
+<li>（3）数值的表示范围大，精度高</li>
+<li>（4）可表示的信息类型广泛</li>
+<li>（5）能用数字逻辑技术进行处理</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-1-2存储程序工作方式"><a href="#1-1-2存储程序工作方式" class="headerlink" title="1.1.2存储程序工作方式"></a>1.1.2存储程序工作方式</h3><ul>
+<li>1.编制程序</li>
+<li>2.存储程序</li>
+<li>3.自动连续执行程序</li>
+<li>4.输出结果</li>
+<li><p>计算机的工作流程</p>
+<ul>
+<li>1.编写程序</li>
+<li>2.输入程序</li>
+<li>3.存储程序</li>
+<li>4.转换为指令序列</li>
+<li>5.执行指令</li>
+<li>6.输出结果</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-1-3计算机的分类"><a href="#1-1-3计算机的分类" class="headerlink" title="1.1.3计算机的分类"></a>1.1.3计算机的分类</h3><ul>
+<li><p>模拟计算机</p>
+<ul>
+<li>由模拟运算器件构成，处理在时间和数值上连续的模拟量（如：电压，电流等）</li>
+</ul>
+</li>
+<li><p>数字计算机</p>
+<ul>
+<li><p>由数字逻辑器件构成，处理离散的数字量</p>
+<ul>
+<li><p>数字计算机可分为：</p>
+<ul>
+<li><p>专用计算机</p>
+<ul>
+<li>以快速，经济和高集成度为主要指标的特殊计算机，它是针对特定任务设计的计算机，适应性较差（如：工控机，ATM等）</li>
+</ul>
+</li>
+<li><p>通用计算机</p>
+<ul>
+<li>适应性较高，但牺牲了效率，速度和经济性，如个人电脑。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>按系统规模和计算能力分：</p>
+<ul>
+<li>巨型机（超算）</li>
+<li>大型机</li>
+<li>小型机</li>
+<li>微型机等</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-2计算机的诞生与发展"><a href="#1-2计算机的诞生与发展" class="headerlink" title="1.2计算机的诞生与发展"></a>1.2计算机的诞生与发展</h2><h3 id="计算机之父：约翰·冯·诺依曼"><a href="#计算机之父：约翰·冯·诺依曼" class="headerlink" title="计算机之父：约翰·冯·诺依曼"></a>计算机之父：约翰·冯·诺依曼</h3><ul>
+<li><p>EDVAC（冯诺依曼思想）：1945年提出发表“存储程序通用电子计算机”方案</p>
+<ul>
+<li>EDVAC方案意义：催生了第一台严格意义上的电子计算机（ENIAC，宾夕法尼亚大学，1946,2）</li>
+</ul>
+</li>
+<li><p>冯诺依曼体系</p>
+<p>奠定了现代电子计算机的理论基础。</p>
+<ul>
+<li>1.用二进制代码表示程序和数据</li>
+<li><p>2.采用存储程序工作方式</p>
+<ul>
+<li>将程序和数据存储起来（存储程序），让计算机自动执行指令，完成各种复杂的运算操作（核心思想）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="新型的现代计算机硬件组成"><a href="#新型的现代计算机硬件组成" class="headerlink" title="新型的现代计算机硬件组成"></a>新型的现代计算机硬件组成</h3><ul>
+<li>存储器</li>
+<li>运算器</li>
+<li>控制器</li>
+<li>输入设备和输出设备</li>
+</ul>
+<h3 id="计算机发展历程"><a href="#计算机发展历程" class="headerlink" title="计算机发展历程"></a>计算机发展历程</h3><ul>
+<li><p>第一代</p>
+<ul>
+<li><p>1946-1957</p>
+<ul>
+<li><p>电子管</p>
+<ul>
+<li>速度低，体积大，价格昂贵，可靠性差，主要用于科学计算</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>第二代</p>
+<ul>
+<li><p>1958-1964</p>
+<ul>
+<li><p>晶体管</p>
+<ul>
+<li>体积缩小，可靠性提高，从科学计算扩大到数据处理</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>第三代</p>
+<ul>
+<li><p>1965-1971</p>
+<ul>
+<li><p>中小规模集成电路</p>
+<ul>
+<li>体积缩小，可靠性提高，速度达到MIPS级，机种多样化，小型计算机出现，软件和外设发展迅速，应用领域扩大；</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>第四代</p>
+<ul>
+<li><p>1971-</p>
+<ul>
+<li><p>大，超大规模集成电路</p>
+<ul>
+<li>速度高达GIPS乃至TIPS级，多机系统和计算机网络迅速发展，微型计算机出现。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="未来发展趋势"><a href="#未来发展趋势" class="headerlink" title="未来发展趋势"></a>未来发展趋势</h3><ul>
+<li>巨型化方向</li>
+<li>微型化方向</li>
+<li>多媒体化方向</li>
+<li>网络化方向</li>
+<li>智能化方向</li>
+</ul>
+<h2 id="1-3计算机系统的层次结构"><a href="#1-3计算机系统的层次结构" class="headerlink" title="1.3计算机系统的层次结构"></a>1.3计算机系统的层次结构</h2><h3 id="系统组织"><a href="#系统组织" class="headerlink" title="系统组织"></a>系统组织</h3><ul>
+<li><p>1.3.1硬件系统</p>
+<ul>
+<li><p>主要功能部件</p>
+<ul>
+<li><p>1.CPU</p>
+<ul>
+<li><p>运算器</p>
+<ul>
+<li>功能：完成算数和逻辑运算</li>
+<li>组成特点：</li>
+</ul>
+</li>
+<li><p>控制器</p>
+<ul>
+<li>功能：产生控制命令，控制全机操作</li>
+<li><p>基本组成</p>
+<ul>
+<li>指令信息</li>
+<li>状态信息</li>
+<li>时序信号</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>2.存储器</p>
+<ul>
+<li>功能：存储数据和数字化后的程序</li>
+<li>【注意】不论是数据还是程序存储器存储的全是用0或1表示的二进制代码。</li>
+<li><p>存储器涉及的几个基本概念</p>
+<ul>
+<li>存储单元：在存储器中保存一个n位二进制数的n个存储电路，组成一个存储单元。</li>
+<li>地址：存储器由许多单元组成，每个存储单元的编号称为地址。</li>
+<li>存储容量：存储器所有存储单元的总数</li>
+<li>内存储器：即主存，是一种用来存放直接为CPU提供服务的程序和数据存储器。</li>
+<li>外存储器：即辅存，为计算机配备的存储容量很大的辅存储器。如磁盘存储器，光盘存储器，其主要特点是存储量大，价格便宜，工作速度较慢。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>3.输入/输出设备</p>
+<ul>
+<li>功能：执行输入/输出信息的转换。</li>
+<li>输入时：原始信息——&gt;二进制代码，送入主机；</li>
+<li>输出时：处理结果（二进制代码）——&gt;用户能够直接感知的形式（字符，图像，声音），并输出给用户。</li>
+</ul>
+</li>
+<li><p>4.总线（Bus）：能为多个部件分时共享一组信息传送通路。</p>
+<ul>
+<li><p>根据传送信息不同可分三类</p>
+<ul>
+<li>1.传送各种数据信息的数据总线（Data Bus）</li>
+<li>2.传送各种地址信息的地址总线（Address Bus）</li>
+<li>3传送各种控制信号的控制总线（Control Bus）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>5.接口：外设的种类，数量，为了将总线与各类外设连接，需在两者之间设置一些部件，具有缓冲，转换，连接等功能，这些部件就是接口。</p>
+</li>
+<li><p>*计算机硬件的典型架构</p>
+<ul>
+<li>1.微型计算机：南-北桥架构</li>
+<li>2.小型计算机：多处理器架构</li>
+<li>3.超级计算机（超算）：集群式架构</li>
+</ul>
+</li>
+<li><p>多处理机系统结构</p>
+<ul>
+<li><p>特点：用多处理器CPU构成</p>
+<ul>
+<li><p>根据处理器之间连接的紧密程度可分：</p>
+<ul>
+<li><p>1.紧密耦合型多机系统</p>
+<ul>
+<li>特点：多个（CPU+LM）组，通过系统总线构成多机系统，且有共享的全局主存储器；</li>
+</ul>
+</li>
+<li><p>2.松散耦合型多机系统</p>
+<ul>
+<li>特点：多个计算节点，由通信系统连接成的多机系统，无全局的主存储器。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>1.3.2软件系统</p>
+<ul>
+<li><p>软件类别</p>
+<ul>
+<li>系统程序：负责系统调度管理，提供运行和开发环境，各种服务，确保系统运行良好。</li>
+<li>应用程序：利用计算机来解决应用问题所编制的程序，如工程设计程序，数据处理程序，自动控制程序，企业管理程序，情报检索程序，科学计算程序等等</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>1.3.3硬，软件系统层次结构</p>
+<ul>
+<li>系统分析级</li>
+<li>用户程序级</li>
+<li>应用程序级</li>
+<li>语言处理程序级</li>
+<li>操作系统级</li>
+<li><p>机器指令级</p>
+<ul>
+<li>软硬分界面</li>
+</ul>
+</li>
+<li><p>微程序级</p>
+</li>
+<li>硬件逻辑级</li>
+</ul>
+</li>
+<li><p>1.3.4软件与硬件的逻辑等价性</p>
+<ul>
+<li>软件的特点：易于实现各种逻辑和运算功能，但是常受到速度指标和软件容量的制约；</li>
+<li>硬件的特点：可以高速实现逻辑和运算功能，但是难以实现复杂功能或计算，受到控制复杂性指标的制约。</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-4计算机系统的性能指标"><a href="#1-4计算机系统的性能指标" class="headerlink" title="1.4计算机系统的性能指标"></a>1.4计算机系统的性能指标</h2><h3 id="1-基本字长"><a href="#1-基本字长" class="headerlink" title="1.基本字长"></a>1.基本字长</h3><p>一般4位，8位，16位，32位，64位等等</p>
+<ul>
+<li>指一次数据操作的基本位数</li>
+<li>它会影响计算的精度、指令的功能。</li>
+</ul>
+<h3 id="2-运算速度"><a href="#2-运算速度" class="headerlink" title="2.运算速度"></a>2.运算速度</h3><ul>
+<li>外频：外部频率或基频，也叫系统时钟频率。</li>
+<li><p>子主题 3</p>
+<ul>
+<li>（1）CPU的主频=外频X倍频系数；</li>
+<li>（2）IPS，每秒执行指令数；</li>
+<li>（3）CPI，即Clock-cycle Per InStruction</li>
+<li>（4）FLOPS，每秒执行的浮点运算次数；比如：天河2号其实测速度：33.86PFLOPS</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-数据传输率"><a href="#3-数据传输率" class="headerlink" title="3.数据传输率"></a>3.数据传输率</h3><ul>
+<li><p>带宽=位宽X工作频率/8(B/S)</p>
+<ul>
+<li>物理含义：单位时间内数据的传输量。</li>
+</ul>
+</li>
+</ul>
+<h3 id="4-存储器的容量"><a href="#4-存储器的容量" class="headerlink" title="4.存储器的容量"></a>4.存储器的容量</h3><ul>
+<li><p>内存（主存）容量</p>
+<ul>
+<li>指可编址的存储单元个数X存储单元的位宽</li>
+</ul>
+</li>
+<li><p>外存（辅存）容量</p>
+<ul>
+<li>指存储器能存储的最大数据量；常表示为：Byte、KB、MB、GB、TB外存容量与总地址码的位数无关。</li>
+</ul>
+</li>
+</ul>
+<p><em>XMind: ZEN - Trial Version</em></p>
+
+      </div>
+
+      <div class="article-footer">
+        
+      </div>
+
+      <div class="article-navs">
+        
+<nav class="card-container card-article-nav">
+  <div class="card-wrap">
+    
+      <div id="article-nav-newer" class="card-item">
+        <article>
+          
+          <a class="card-link article-nav-link" href="/2020/03/091450.html"></a>
+          <strong class="article-nav-caption">Newer</strong>
+          <p class="article-nav-title">
+            
+              高数基础笔记
+            
+          </p>
+        </article>
+      </div>
+    
+    
+      <div id="article-nav-older" class="card-item">
+        <article>
+          
+          <a class="card-link article-nav-link" href="/2020/03/031148.html"></a>
+          <strong class="article-nav-caption">Older</strong>
+          <p class="article-nav-title">
+            
+              test
+            
+          </p>
+        </article>
+      </div>
+    
+  </div>
+</nav>
+
+      </div>
+      
+      
+
+  
+  <div class="valine-container">
+    <div id="valine_thread" class="valine-thread"></div>
+  </div>
+
+  
+  
+  <div class="disqus-container">
+    <p id="disqus_error" class="disqus-error" style="display: none;">如果你看不到评论，那么就真的看不到评论 w(゜Д゜)w</p>
+    <div id="disqus_thread" class="disqus-thread"></div>
+  </div>
+  
+
+
+    </div>
+  </article>
+</div>
+
+    <!-- footer container -->
+<footer id="footer" class="footer">
+  <div class="footer-container">
+    <p>&copy; 2020 <a href="/" target="_blank">后来@</a></p>
+
+    <style>
+      .colour-text {
+        display: inline-block;
+        margin: 20px auto;
+        text-align: left;
+        background-image: linear-gradient(to right, deeppink, pink, hotpink, lightpink, deeppink);
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+      }
+    </style>
+    
+    <p class="colour-text">
+      “关于泉前辈，我可以和他约会吗？” “不可以”
+    </p>
+
+    
+
+    
+      <p><a href="http://www.miitbeian.gov.cn" target="_blank">蜀ICP备15014309号</a></p>
+    
+
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> Theme - <a href="https://github.com/miiiku/flex-block" target="_blank">flex-block</a></p>
+  </div>
+</footer>
+  </div>
+
+  
+  
+
+  <!-- disqus 评论 start -->
+  <script type="text/javascript">
+    /*
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    
+    /*
+      var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+    */
+
+    (function() {
+      var d = document, s = d.createElement('script'), c = d.querySelector(".disqus-container");
+      if (!c) return;
+      s.src = 'https://sukoshi95.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      s.onerror = () => {
+        let t = document.querySelector("#disqus_error");
+        t.style.display = "block";
+      }
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+  <!-- disqus 评论 end -->
+  
+
+  <!-- aplayer 音频 start -->
+  
+<link rel="stylesheet" href="/lib/APlayer.min.css">
+
+  
+<script src="/lib/APlayer.min.js"></script>
+
+  <script type="text/javascript">
+    const aplayer = document.querySelectorAll(".aplayer");
+    aplayer && initaplayer(aplayer);
+    function initaplayer(els) {
+      let elsArr = Array.from(els);
+      elsArr.forEach(el => {
+        new APlayer({
+          container: el,
+          audio: { ...el.dataset },
+          theme: "#b7daff",
+          lrcType: 3,
+          autoplay: false,
+          loop: false,
+          mutex: true,
+        });
+      });
+    }
+  </script>
+  <!-- aplayer 音频 end -->
+  
+
+<!-- dplayer 视频 start -->
+
+<link rel="stylesheet" href="/lib/DPlayer.min.css">
+
+
+<script src="/lib/DPlayer.min.js"></script>
+
+<script type="text/javascript">
+  const dplayer = document.querySelectorAll(".dplayer");
+  dplayer && initDPlayer(dplayer);
+  function initDPlayer(els) {
+    let elsArr = Array.from(els);
+    elsArr.forEach(el => {
+      let url = el.dataset.url;
+      let cover = el.dataset.cover;
+      new DPlayer({
+        container: el,
+        video: { url: url, pic: cover },
+        theme: "#b7daff",
+        autoplay: false,
+        loop: false,
+        mutex: true,
+      });
+    });
+  }
+</script>
+<!-- dplayer 视频 end -->
+
+
+<!-- waterfall 瀑布流 start -->
+
+<script src="/lib/waterfall.min.js"></script>
+
+<script type="text/javascript">
+
+const waterfalls = document.querySelectorAll(".waterfall-container");
+
+if (waterfalls && waterfalls.length > 0) {
+  waterfalls.forEach((waterfall, index) => {
+    let cls = "waterfall-container-" + index;
+    waterfall.classList.add(cls);
+    initWaterfall(cls, waterfall);
+  });
+}
+
+function initWaterfall(selector, el) {
+  const options = {};
+  if (Object.keys(el.dataset).length > 0) {
+    for (let k in el.dataset) {
+      options[k] = el.dataset[k];
+    }
+  }
+  waterfall(`.${selector}`, options);
+}
+</script>
+<!-- waterfall 瀑布流 end -->
+
+
+  <!-- zoom start -->
+  
+<script src="/lib/zoom.min.js"></script>
+
+  <script type="text/javascript">
+    document.querySelector(".article-content") && zoom(".article-content");
+  </script>
+  <!-- zoom end -->
+  
+
+
+
+  
+
+
+  
+
+
+  <!-- Baidu Analytics START -->
+  <script>
+    var _hmt = _hmt || [];
+    (function () {
+      if (window.location.hostname === "localhost" || window.location.hostname.startsWith("192.168")) {
+        return console.log("本地调试");
+      }
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?410f4beade12e8df64ea4c5622313220";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  <!-- Baidu Analytics End -->
+
+  
+
+
+  <!-- Tencent Analytics START -->
+  <script>
+    (function() {
+      if (window.location.hostname === "localhost" || window.location.hostname.startsWith("192.168")) {
+        return console.log("本地调试");
+      }
+      let s = document.querySelector("script");
+      let hm = document.createElement("script");
+      hm.charset = "UTF-8";
+      hm.src = "https://tajs.qq.com/stats?sId=64852535";
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+  <!-- Tencent Analytics End -->
+
+
+
+<script src="/js/script.js"></script>
+
+  
+  <!-- 尾部用户自定义相关内容 -->
+
+<!-- 插入Sentry -->
+<script>
+  (function () {
+    if (window.location.hostname === "localhost" || window.location.hostname.startsWith("192.168")) {
+      return console.log("本地调试");
+    }
+    let hm = document.createElement("script");
+    let s = document.querySelector("script");
+    hm.src = "https://browser.sentry-cdn.com/5.10.2/bundle.min.js";
+    hm.integrity = "sha384-ssBfXiBvlVC7bdA/VX03S88B5MwXQWdnpJRbUYFPgswlOBwETwTp6F3SMUNpo9M9";
+    hm.crossOrigin = "anonymous";
+    hm.onload = function () {
+      Sentry.init({ dsn: "https://d4e3bac81c30416fb7b917004fdc2a6f@sentry.io/1864685" });
+    }
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+<!-- 插入Sentry End -->
+
+<!-- 插入百度ESO相关 START -->
+<script>
+  var _hmt = _hmt || [];
+  (function () {
+    if (window.location.hostname === "localhost" || window.location.hostname.startsWith("192.168")) {
+      return console.log("本地调试");
+    }
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?410f4beade12e8df64ea4c5622313220";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  });
+</script>
+<!-- 插入百度ESO相关 END -->
+
+<!-- 插入百度链接自动提交 START -->
+<script>
+  (function () {
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+<!-- 插入百度链接自动提交 END --> 
+</body>
+</html>
